@@ -1,5 +1,8 @@
-import Initialize from "./Initialize";
-import "../css/style.scss";
+import CreateNavbar from "./CreateNavbar";
+
+
+import "../assets/css/main.min.css";
+
 
 // **  IIFE: Immediately Invoked Function Expression  */
 
@@ -7,6 +10,9 @@ import "../css/style.scss";
 
   console.log("starting the cool->app");
 
-  let init = new Initialize();
+  let navbar = new CreateNavbar();
+
+  
+
 
 })();
