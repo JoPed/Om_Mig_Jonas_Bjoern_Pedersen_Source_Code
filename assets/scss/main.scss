@@ -1,3 +1,144 @@
-body{
-    font-family: Tahoma, Verdana, Geneva, sans-serif;
+@import "variables";
+
+html {
+    font-size: 10px;
+    box-sizing: border-box;
+    font-family: Tahoma, sans-serif;
+    background-color: $col-backgroundOuter;
 }
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+/* #region  Navigation */
+#mainHeader {
+    background-color: $col-content;
+    width: 1280px;
+    min-height: 50px;
+    position: sticky;
+    top: 0;
+    margin: 0 auto;
+    z-index: 999999;
+
+    display: flex;
+    justify-content: space-between;
+
+    #navbar {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        #icon {
+            background-color: transparent;
+            outline: none;
+            border: none;
+            text-decoration: none;
+            font-size: 3.6rem;
+            color: $col-links;
+            padding: 15px 16px;
+            cursor: pointer;
+            height: 75px;
+
+            &:hover {
+                color: $col-text;
+
+            }
+        }
+    }
+
+    #mainHeader__image {
+        width: 125px;
+        height: 125px;
+        border-radius: 50%;
+        margin-left: 25px;
+    }
+}
+
+#navList {
+    list-style-type: none;
+    width: 70%;
+    display: flex;
+    justify-content: center;
+
+    .navLinks {
+        text-decoration: none;
+        font-size: 2.5rem;
+        color: $col-links;
+        display: inline-block;
+        padding: 10px 20px;
+
+        &:hover {
+            color: $col-text;
+        }
+    }
+}
+
+/* #endregion */
+
+/* #region  Display none */
+// #icon {
+//     display: none;
+// }
+
+/* #endregion */
+
+
+/* #region Tablet  */
+@media only screen and (max-width: 768px) {
+    html {
+        font-size: 8px;
+    }
+
+    /* #region  Navigation */
+    #mainHeader {
+        width: 100%;
+
+        #navbar {
+            justify-content: flex-end;
+            align-items: center;
+        }
+    }
+
+
+
+    #navList {
+        flex-direction: column;
+
+        &.responsive {
+            position: absolute;
+            top: 125px;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: $col-content;
+            align-items: center;
+            justify-content: flex-start;
+
+        }
+
+        a {
+            display: inline-block;
+        }
+
+    }
+
+    /* #endregion */
+
+    /* #region  Display none */
+    #navList{
+        li{
+            display: none;
+        }
+    }
+
+
+    /* #endregion */
+}
+
+/* #endregion */

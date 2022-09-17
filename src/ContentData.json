@@ -1,3 +1,6 @@
 {
-    "liMenuPoints": ["Om Mig", "Fakta", "Fremtiden", "Kontakt"]
+    "liMenuPoints": {
+        "title": ["Om Mig", "Fakta", "Fremtiden", "Kontakt"],
+        "href": ["about", "facts", "future", "contact"]
+    }
 }
