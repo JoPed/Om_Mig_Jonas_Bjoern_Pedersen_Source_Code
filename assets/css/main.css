@@ -54,8 +54,6 @@ img {
   row-gap: 15px;
   position: relative;
   z-index: 999;
-  -webkit-clip-path: fill-box;
-          clip-path: fill-box;
 }
 
 /* #region Top Container */
@@ -92,13 +90,14 @@ img {
 
 /* #region  Bottom container */
 #bottomContainer {
+  margin-bottom: 800px;
   width: 100%;
   grid-column: 1/13;
   grid-row: 2;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-auto-rows: auto;
-  margin-bottom: 400px;
+  overflow: hidden;
 }
 #bottomContainer #tigerImg {
   grid-column: 1/6;
