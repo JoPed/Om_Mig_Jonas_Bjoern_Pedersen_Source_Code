@@ -5,8 +5,6 @@ class CreateHtmlElements {
         /* #region  Håndter hvilken html element der skal laves  */
         this.obj = obj;
 
-
-
         //* Hvis ingen type er angivet, lav en div.
         this.elementType = this.obj.type == "" ? "div" : this.obj.type;
 

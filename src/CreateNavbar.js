@@ -25,7 +25,7 @@ class CreateNavbar{
             class: ""
         });
 
-        img.elem.src = "../assets/img/pc/JonasBjørnPedersen_pc.jpg";
+        img.elem.src = this.contentData.imageSources.pc[0];
 
         img.ApplyElementToParent(header.elem);
 

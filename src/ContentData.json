@@ -1,6 +1,33 @@
 {
     "liMenuPoints": {
-        "title": ["Om Mig", "Fakta", "Fremtiden", "Kontakt"],
-        "href": ["about", "facts", "future", "contact"]
+        "title": [
+            "Om Mig",
+            "Fakta",
+            "Fremtiden",
+            "Kontakt"
+        ],
+        "href": [
+            "about",
+            "facts",
+            "future",
+            "contact"
+        ]
+    },
+    "articles": [
+        {
+            "title": "Velkommen til!",
+            "paragraphs": [
+                "Mit navn er Jonas, jeg er 29 år og bor i Grenaa. Her har jeg boet siden sommeren 2014. Jeg er født i Århus, hvor vi boede til jeg var 2 år. Jeg er opvokset i lille by på djursland, der hedder Ørsted.\nJeg bruger det meste af min fritid foran computeren, hvor jeg typisk enten gamer eller koder. Lige i tiden spiller jeg en del Football Manager, men kan også sagtens lokkes til spil som Battlefield, Call of Duty eller The Division for bare at nævne nogle stykker.",
+
+                "På denne side vil du kunne finde forskellige sjove/underlige/nyttige (måske?) information om mig, hvor der også vil være nogle ældre og nyere billeder af mig. Siden er ment som en sjov og lidt anderledes måde at præsentere mig selv.",
+
+                "Denne side er lavet som en del af en projekt i JavaScript. Til udviklingen er der brugt JavaScript ECMAScript 6, Node.js samt NPM. Projektet er lavet i en webpack boilerplate, som jeg dog ikke selv har lavet."
+            ],
+            "link": "<a href=\"http://jona09h3.web.videndjurs.dk\" target=\"_blank\">Hvis I er interesseret i at se mere fra mig, kan i besøge mit portfolie, ved at trykke her.</a>"
+        }
+    ],
+    "imageSources": {
+        "pc": ["../assets/img/pc/JonasBjørnPedersen_pc.jpg", "../assets/img/pc/JonasBjørnPedersen_Portugal_2002_pc.jpg", "../assets/img/pc/JonasBjørnPedersen_Thailand_2005_pc.jpg", "../assets/img/pc/JonasBjørnPedersen_Portugal_Fodbold_2002_pc.jpg"]
     }
+
 }
