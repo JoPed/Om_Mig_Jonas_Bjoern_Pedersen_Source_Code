@@ -18,16 +18,30 @@
             "title": "Velkommen til!",
             "paragraphs": [
                 "Mit navn er Jonas, jeg er 29 år og bor i Grenaa. Her har jeg boet siden sommeren 2014. Jeg er født i Århus, hvor vi boede til jeg var 2 år. Jeg er opvokset i lille by på djursland, der hedder Ørsted.\nJeg bruger det meste af min fritid foran computeren, hvor jeg typisk enten gamer eller koder. Lige i tiden spiller jeg en del Football Manager, men kan også sagtens lokkes til spil som Battlefield, Call of Duty eller The Division for bare at nævne nogle stykker.",
-
                 "På denne side vil du kunne finde forskellige sjove/underlige/nyttige (måske?) information om mig, hvor der også vil være nogle ældre og nyere billeder af mig. Siden er ment som en sjov og lidt anderledes måde at præsentere mig selv.",
-
                 "Denne side er lavet som en del af en projekt i JavaScript. Til udviklingen er der brugt JavaScript ECMAScript 6, Node.js samt NPM. Projektet er lavet i en webpack boilerplate, som jeg dog ikke selv har lavet."
             ],
             "link": "<a href=\"http://jona09h3.web.videndjurs.dk\" target=\"_blank\">Hvis I er interesseret i at se mere fra mig, kan i besøge mit portfolie, ved at trykke her.</a>"
         }
     ],
+    "facts": {
+        "factsListItems": [
+            "Billederne fra Portugal er fra en tur på 2 ½ måned med mine forældre og lillesøster, hvor vi boede i en kystby der hedder Tavira.",
+            "På en tur til Thailand, i 2005, har jeg siddet og aet en tiger.",
+            "Jeg har boet fem forskellige steder i Grenaa, på otte år.",
+            "Jeg har været salgsleder i både Fakta og Netto.",
+            "Jeg har engang lavet heimlich på en kunde, da hun havde vejrtrækningsproblemer.",
+            "Jeg var en del af Netto Grenå som salgsleder, da de vandt årets Netto butik 2021."
+        ],
+        "factsTitle": "Fakta/underlige informationer"
+    },
     "imageSources": {
-        "pc": ["../assets/img/pc/JonasBjørnPedersen_pc.jpg", "../assets/img/pc/JonasBjørnPedersen_Portugal_2002_pc.jpg", "../assets/img/pc/JonasBjørnPedersen_Thailand_2005_pc.jpg", "../assets/img/pc/JonasBjørnPedersen_Portugal_Fodbold_2002_pc.jpg"]
+        "pc": [
+            "../assets/img/pc/JonasBjørnPedersen_pc.jpg",
+            "../assets/img/pc/JonasBjørnPedersen_Portugal_2002_pc.jpg",
+            "../assets/img/pc/JonasBjørnPedersen_Thailand_2005_pc.jpg",
+            "../assets/img/pc/JonasBjørnPedersen_Portugal_Fodbold_2002_pc.jpg"
+        ],
+        "altText": ["Portræt billede - Jonas Bjørn Pedersen", "En ung Jonas der spiller fodbold på en strand i Portugal i 2002", "En ung Jonas der sidder og aer en stor tiger i Thailand i 2005", "En meget træt Jonas der ligger og sover med sin fodbold i Portugal 2002"]
     }
-
 }

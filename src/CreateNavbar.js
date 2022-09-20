@@ -10,6 +10,10 @@ class CreateNavbar{
         //* Reference the data in the json file.
         this.contentData = content;
 
+        
+
+        
+        
         //* Create header
         let header = new CreateHtmlElements({
             type: "header",
@@ -17,15 +21,17 @@ class CreateNavbar{
             class: ""
         });
         header.ApplyElementToParent(document.body);
-
+        
         //*Create img
         let img = new CreateHtmlElements({
             type: "img",
             id: "mainHeader__image",
             class: ""
         });
-
-        img.elem.src = this.contentData.imageSources.pc[0];
+        
+        //*Look in Content.js in function SetImgSrcAndAltText() for image source and alt text.
+        Window.images.push(img.elem);
+        
 
         img.ApplyElementToParent(header.elem);
 
@@ -91,6 +97,7 @@ class CreateNavbar{
             //* using this method to append the li, to the ul.
             li.ApplyElementToParent(this.ul.elem);
 
+            //* Array bruges i BurgerMenuToogle()
             this.listElements.push(li.elem);
 
             //*Creating an a element with href, and applying them to the li's with a textnode

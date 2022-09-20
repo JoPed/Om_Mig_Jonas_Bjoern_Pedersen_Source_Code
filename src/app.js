@@ -13,6 +13,9 @@ import "../assets/css/main.min.css";
 
 (function () {
 
+  //*Global array, to store images on the site
+  Window.images = [];
+
   console.log("starting the cool->app");
 
   let navbar = new CreateNavbar();
