@@ -22,6 +22,14 @@
                 "Denne side er lavet som en del af en projekt i JavaScript. Til udviklingen er der brugt JavaScript ECMAScript 6, Node.js samt NPM. Projektet er lavet i en webpack boilerplate, som jeg dog ikke selv har lavet."
             ],
             "link": "<a href=\"http://jona09h3.web.videndjurs.dk\" target=\"_blank\">Hvis I er interesseret i at se mere fra mig, kan i besøge mit portfolie, ved at trykke her.</a>"
+        },
+        {
+            "title": "Fremtiden",
+            "paragraphs": ["Som færdig uddannet front-end webudvikler vil jeg gerne arbejde med, at bygge hjemmesider op eller vedligeholde eksisterende hjemmesider. Det kunne f.eks. omfatte, at kode en hjemmeside på baggrund af et wireframe eller mockup - som jeg helst ikke selv udarbejder :-).", 
+
+            "Det betyder grundlæggende, at jeg gerne vil arbejde med HTML, CSS samt JavaScript. I løbet af uddannelsen kommer vi til, at arbejde  med f.eks. CSS frameworket Bootstrap, CMS (wordpress) samt React. Alle disse ville jeg derfor også kunne benytte i det daglige arbejde. ", 
+
+            "Min backup plan, hvis det rigtige arbejde ikke byder sig, ville være at læse videre som MultiMedieIntegrator, hvor man skal have en læreplads."]
         }
     ],
     "facts": {
@@ -42,6 +50,11 @@
             "../assets/img/pc/JonasBjørnPedersen_Thailand_2005_pc.jpg",
             "../assets/img/pc/JonasBjørnPedersen_Portugal_Fodbold_2002_pc.jpg"
         ],
-        "altText": ["Portræt billede - Jonas Bjørn Pedersen", "En ung Jonas der spiller fodbold på en strand i Portugal i 2002", "En ung Jonas der sidder og aer en stor tiger i Thailand i 2005", "En meget træt Jonas der ligger og sover med sin fodbold i Portugal 2002"]
+        "altText": [
+            "Portræt billede - Jonas Bjørn Pedersen",
+            "En ung Jonas der spiller fodbold på en strand i Portugal i 2002",
+            "En ung Jonas der sidder og aer en stor tiger i Thailand i 2005",
+            "En meget træt Jonas der ligger og sover med sin fodbold i Portugal 2002"
+        ]
     }
 }

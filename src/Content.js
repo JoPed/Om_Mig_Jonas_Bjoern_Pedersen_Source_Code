@@ -29,35 +29,35 @@ class Content {
             class: ""
         });
 
-        this.topContainer.ApplyElementToParent(this.mainContainer.elem);
+        this.topContainer.ApplyElementToParent(this.mainContainer.htmlElem);
 
         //* Inputting content in the first container
-        let welcomeArticle = new CreateHtmlElements({
+        this.welcomeArticle = new CreateHtmlElements({
 
             type: "article",
             id: "welcomeArticle",
             class: ""
         });
 
-        welcomeArticle.ApplyElementToParent(this.topContainer.elem);
+        this.welcomeArticle.ApplyElementToParent(this.topContainer.htmlElem);
 
-        let welcomeHeading = new CreateHtmlElements({
+        this.welcomeHeading = new CreateHtmlElements({
             type: "h1",
             id: "",
             class: ""
         });
 
-        let welcomeText = new CreateHtmlElements({
+        this.welcomeText = new CreateHtmlElements({
             type: "p",
             id: "",
             class: ""
         });
 
-        welcomeHeading.ApplyElementToParent(welcomeArticle.elem);
-        welcomeText.ApplyElementToParent(welcomeArticle.elem);
+        this.welcomeHeading.ApplyElementToParent(this.welcomeArticle.htmlElem);
+        this.welcomeText.ApplyElementToParent(this.welcomeArticle.htmlElem);
 
         /* #region  Welcome Image - Portugal Img */
-        let welcomeImgFigure = new CreateHtmlElements({
+        this.welcomeImgFigure = new CreateHtmlElements({
             type: "figure",
             id: "welcomeImgFigure",
             class: ""
@@ -76,45 +76,33 @@ class Content {
         });
 
 
-        welcomeImgFigure.ApplyElementToParent(welcomeArticle.elem);
-        welcomeImg.ApplyElementToParent(welcomeImgFigure.elem);
-        welcomeImgFigCaption.ApplyElementToParent(welcomeImgFigure.elem);
-        welcomeImgFigCaption.elem.innerHTML = this.content.imageSources.altText[1];
+        this.welcomeImgFigure.ApplyElementToParent(this.welcomeArticle.htmlElem);
+        welcomeImg.ApplyElementToParent(this.welcomeImgFigure.htmlElem);
+        welcomeImgFigCaption.ApplyElementToParent(this.welcomeImgFigure.htmlElem);
+        welcomeImgFigCaption.htmlElem.innerHTML = this.content.imageSources.altText[1];
 
-        Window.images.push(welcomeImg.elem);
+        Window.images.push(welcomeImg.htmlElem);
 
-        //*Fading the first image (that is already in the viewport)
-        gsap.to(welcomeImgFigure.elem, {
-            opacity: 1,
-            duration: 10,
-            ease: "slow"
-
-        });
+        this.HandleWelcomeImgGsap();
         /* #endregion */
 
 
-        //*Hent data/text fra json filen        
-        for (let i = 0; i < this.content.articles[0].paragraphs.length; i++) {
-
-            welcomeText.elem.innerHTML += this.content.articles[0].paragraphs[i].replace("\n", "<br>") + `<br><br>`;
-
-        }
-        welcomeText.elem.innerHTML += this.content.articles[0].link;
-        welcomeHeading.elem.innerHTML = this.content.articles[0].title;
+        //*Handle welcome article text
+        this.HandleWelcomeArticleText();
 
         /* #endregion */
 
         /* #region  Container 2 */
-        this.bottomContainer = new CreateHtmlElements({
+        this.middleContainer = new CreateHtmlElements({
             type: "div",
-            id: "bottomContainer",
+            id: "middleContainer",
             class: ""
         });
 
-        this.bottomContainer.ApplyElementToParent(this.mainContainer.elem);
+        this.middleContainer.ApplyElementToParent(this.mainContainer.htmlElem);
 
         /* #region  Tiger Image */
-        let tigerImgFigure = new CreateHtmlElements({
+        this.tigerImgFigure = new CreateHtmlElements({
             type: "figure",
             id: "tigerImgFigure",
             class: ""
@@ -132,24 +120,15 @@ class Content {
             class: ""
         });
 
-        tigerImgFigure.ApplyElementToParent(this.bottomContainer.elem);
-        tigerImg.ApplyElementToParent(tigerImgFigure.elem);
-        tigerImgFigCaption.ApplyElementToParent(tigerImgFigure.elem);
-        tigerImgFigCaption.elem.innerHTML = this.content.imageSources.altText[2];
+        this.tigerImgFigure.ApplyElementToParent(this.middleContainer.htmlElem);
+        tigerImg.ApplyElementToParent(this.tigerImgFigure.htmlElem);
+        tigerImgFigCaption.ApplyElementToParent(this.tigerImgFigure.htmlElem);
+        tigerImgFigCaption.htmlElem.innerHTML = this.content.imageSources.altText[2];
 
-        Window.images.push(tigerImg.elem);
+        Window.images.push(tigerImg.htmlElem);
 
-        //* Gsap scrolltrigger on tigerImg
-        gsap.to(tigerImgFigure.elem, {
-            scrollTrigger: {
-                trigger: tigerImg.elem,
-                scrub: true,
-                start: "top bottom",
-                end: "top top"
-            },
-            x: 590,
-            duration: 2
-        });
+        this.HandleTigerImgGsap();
+
         /* #endregion */
 
 
@@ -159,7 +138,7 @@ class Content {
             class: ""
         });
 
-        factsSection.ApplyElementToParent(this.bottomContainer.elem);
+        factsSection.ApplyElementToParent(this.middleContainer.htmlElem);
 
         let factsHeading = new CreateHtmlElements({
             type: "h2",
@@ -167,8 +146,8 @@ class Content {
             class: ""
         });
 
-        factsHeading.elem.innerHTML = this.content.facts.factsTitle;
-        factsHeading.ApplyElementToParent(factsSection.elem);
+        factsHeading.htmlElem.innerHTML = this.content.facts.factsTitle;
+        factsHeading.ApplyElementToParent(factsSection.htmlElem);
 
 
 
@@ -178,15 +157,89 @@ class Content {
             class: ""
         });
 
-        this.factsList.ApplyElementToParent(factsSection.elem);
+        this.factsList.ApplyElementToParent(factsSection.htmlElem);
 
         this.CreateListItemsFactsList();
-        console.log(Window.images);
 
-        this.SetImgSrcAndAltText();
 
 
         /* #endregion */
+
+        /* #region  Container 3 */
+        this.bottomContainer = new CreateHtmlElements({
+            type: "div",
+            id: "bottomContainer"
+        });
+
+        this.articleFuturePlans = new CreateHtmlElements({
+            type: "article",
+            id: "articleFuturePlans"
+        });
+
+        this.articleFuturePlansHeading = new CreateHtmlElements({
+            type: "h2"
+        });
+
+        this.btnPressMe = new CreateHtmlElements({
+            type: "button",
+            id: "btnPressMe",
+        });
+
+        this.futurePlans = new CreateHtmlElements({
+            type: "p",
+            id: "futurePlans"
+        });
+
+        let portugalImgFigure = new CreateHtmlElements({
+            type: "figure",
+            id: "portugalImgFigure"
+        });
+
+        let portugalImg = new CreateHtmlElements({
+            type: "img"
+        });
+
+        Window.images.push(portugalImg.htmlElem);
+
+        let portugalImgFigCaption = new CreateHtmlElements({
+            type: "figcaption"
+        });
+
+
+        this.bottomContainer.ApplyElementToParent(this.mainContainer.htmlElem);
+        this.articleFuturePlans.ApplyElementToParent(this.bottomContainer.htmlElem);
+        this.btnPressMe.ApplyElementToParent(this.bottomContainer.htmlElem);
+        this.articleFuturePlansHeading.ApplyElementToParent(this.articleFuturePlans.htmlElem);
+        this.futurePlans.ApplyElementToParent(this.articleFuturePlans.htmlElem);
+        portugalImgFigure.ApplyElementToParent(this.bottomContainer.htmlElem);
+        portugalImg.ApplyElementToParent(portugalImgFigure.htmlElem);
+        portugalImgFigCaption.ApplyElementToParent(portugalImgFigure.htmlElem);
+
+        portugalImgFigCaption.htmlElem.innerHTML = this.content.imageSources.altText[3];
+
+
+        this.HandleFuturePlansArticleText();
+
+        this.ShowFutureArticleAndImg();
+
+
+
+        /* #endregion */
+
+        this.SetImgSrcAndAltText();
+
+        this.HandleLayeredScrollingTopMiddle();
+    }
+
+    HandleWelcomeArticleText(){
+        //*Hent data/text fra json filen        
+        for (let i = 0; i < this.content.articles[0].paragraphs.length; i++) {
+
+            this.welcomeText.htmlElem.innerHTML += this.content.articles[0].paragraphs[i].replace("\n", "<br id='breakLine'>") + `<br><br>`;
+
+        }
+        this.welcomeText.htmlElem.innerHTML += this.content.articles[0].link;
+        this.welcomeHeading.htmlElem.innerHTML = this.content.articles[0].title;
     }
 
     CreateListItemsFactsList() {
@@ -197,10 +250,10 @@ class Content {
                 class: ""
             });
 
-            li.ApplyElementToParent(this.factsList.elem);
+            li.ApplyElementToParent(this.factsList.htmlElem);
 
             let listItem = document.createTextNode(this.content.facts.factsListItems[i]);
-            li.elem.appendChild(listItem);
+            li.htmlElem.appendChild(listItem);
         }
     }
 
@@ -210,6 +263,70 @@ class Content {
             Window.images[i].alt = this.content.imageSources.altText[i];
             Window.images[i].src = this.content.imageSources.pc[i];
         }
+    }
+
+    HandleWelcomeImgGsap() {
+        //*Fading the first image (that is already in the viewport)
+        gsap.to(this.welcomeImgFigure.htmlElem, {
+            opacity: 1,
+            duration: 10,
+            ease: "slow"
+
+        });
+    }
+
+    HandleTigerImgGsap() {
+        //* Gsap scrolltrigger on tigerImg
+        gsap.to(this.tigerImgFigure.htmlElem, {
+            scrollTrigger: {
+                trigger: this.tigerImgFigure.htmlElem,
+                //setting scrub to a number value, means it is going to take x amount of time to catch up with the scroll trigger. Setting scrub:true instead makes it follow the scrolltrigger
+                scrub: .3,  
+                start: "top bottom",
+                end: "top 135px"
+            },
+            x: 590,
+        });
+    }
+
+    HandleLayeredScrollingTopMiddle() {
+        ScrollTrigger.create({
+            trigger: this.topContainer.htmlElem,
+            start: "top top",
+            end: "bottom 100px",
+            pin: "#welcomeArticle",
+            pinSpacing: false
+        });
+    }
+
+    HandleFuturePlansArticleText(){
+        for(let i = 0; i < this.content.articles[1].paragraphs.length; i++){
+            this.futurePlans.htmlElem.innerHTML += this.content.articles[1].paragraphs[i] + `<br><br>` 
+        }
+
+        let headingNode = document.createTextNode(this.content.articles[1].title);
+        this.articleFuturePlansHeading.htmlElem.appendChild(headingNode);
+
+    }
+
+    ShowFutureArticleAndImg(){
+        this.btnPressMe.htmlElem.addEventListener("click", () => {
+            
+            gsap.to(this.articleFuturePlans.htmlElem, {
+                duration: 5,
+                x: 570,
+                opacity: 1,
+                ease: "bounce",
+
+                onComplete: () => {
+                    gsap.to(this.btnPressMe.htmlElem, {
+                        duration: 5,
+                        x: 2000,
+                        ease: "slow"
+                    });
+                }
+            });
+        })
     }
 }
 export default Content;

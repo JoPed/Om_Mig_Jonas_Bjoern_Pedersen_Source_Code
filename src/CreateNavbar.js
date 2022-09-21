@@ -30,10 +30,10 @@ class CreateNavbar{
         });
         
         //*Look in Content.js in function SetImgSrcAndAltText() for image source and alt text.
-        Window.images.push(img.elem);
+        Window.images.push(img.htmlElem);
         
 
-        img.ApplyElementToParent(header.elem);
+        img.ApplyElementToParent(header.htmlElem);
 
         //* Create navbar
         let nav = new CreateHtmlElements({
@@ -42,7 +42,7 @@ class CreateNavbar{
             class: ""
 
         });
-        nav.ApplyElementToParent(header.elem);
+        nav.ApplyElementToParent(header.htmlElem);
 
 
         //*Create ul
@@ -51,7 +51,7 @@ class CreateNavbar{
             id: "navList",
             class: ""
         });
-        this.ul.ApplyElementToParent(nav.elem);
+        this.ul.ApplyElementToParent(nav.htmlElem);
 
         //* Create burger menu Icon
         let btnBurgerIcon = new CreateHtmlElements({
@@ -62,7 +62,7 @@ class CreateNavbar{
 
         
 
-        btnBurgerIcon.ApplyElementToParent(nav.elem);
+        btnBurgerIcon.ApplyElementToParent(nav.htmlElem);
 
         //* if/when adding more than one class to an element, please seperate using a dot/period (.)
         this.burgerIcon = new CreateHtmlElements({
@@ -71,7 +71,7 @@ class CreateNavbar{
             class: "fa-solid.fa-bars"
         });
 
-        this.burgerIcon.ApplyElementToParent(btnBurgerIcon.elem);
+        this.burgerIcon.ApplyElementToParent(btnBurgerIcon.htmlElem);
 
 
         //*Function to create li->a with href and textnode
@@ -79,7 +79,7 @@ class CreateNavbar{
 
         // let handleMenu = new Navigation(this.ul, this.listElements, burgerIcon);
 
-        btnBurgerIcon.elem.addEventListener("click", () => {
+        btnBurgerIcon.htmlElem.addEventListener("click", () => {
             this.BurgerMenuToggle();
         });
 
@@ -95,10 +95,10 @@ class CreateNavbar{
             });   
             
             //* using this method to append the li, to the ul.
-            li.ApplyElementToParent(this.ul.elem);
+            li.ApplyElementToParent(this.ul.htmlElem);
 
             //* Array bruges i BurgerMenuToogle()
-            this.listElements.push(li.elem);
+            this.listElements.push(li.htmlElem);
 
             //*Creating an a element with href, and applying them to the li's with a textnode
             let a = new CreateHtmlElements({
@@ -107,20 +107,20 @@ class CreateNavbar{
                 class: "navLinks"
             });
 
-            a.ApplyElementToParent(li.elem);
-            a.elem.href = `#${this.contentData.liMenuPoints.href[i]}`;
+            a.ApplyElementToParent(li.htmlElem);
+            a.htmlElem.href = `#${this.contentData.liMenuPoints.href[i]}`;
             let node = document.createTextNode(this.contentData.liMenuPoints.title[i]);
-            a.elem.appendChild(node);
+            a.htmlElem.appendChild(node);
         }
     }
 
     BurgerMenuToggle() {
 
         // Hvis nav elementet kun har class="nav" skal class=responsive tilføjes 
-        if (!this.ul.elem.classList.contains("responsive")) {
+        if (!this.ul.htmlElem.classList.contains("responsive")) {
     
             // Tilføj responsive class, da den ikke har den i forvejen.
-            this.ul.elem.classList.add("responsive");
+            this.ul.htmlElem.classList.add("responsive");
 
             this.ChangeIcon();
 
@@ -134,7 +134,7 @@ class CreateNavbar{
         else {
     
             //Fjern responsive class, da den har den i forvejen
-            this.ul.elem.classList.remove("responsive");
+            this.ul.htmlElem.classList.remove("responsive");
             this.ChangeIcon();
     
             //Looper gennem array med li elementer og sætter display:none på dem alle sammen
@@ -147,14 +147,14 @@ class CreateNavbar{
 
     ChangeIcon() {
         // Hvis ikonet (i elementet) inde i knappen har en klass fa-bars (de streg menu streger)
-        if (this.burgerIcon.elem.classList.contains("fa-bars")) {
+        if (this.burgerIcon.htmlElem.classList.contains("fa-bars")) {
     
             // Erstat menu bar ikon med xmark 
-            this.burgerIcon.elem.classList.replace("fa-bars", "fa-xmark");
+            this.burgerIcon.htmlElem.classList.replace("fa-bars", "fa-xmark");
         }
         else {
             // Erstat xmark ikon med menu bar 
-            this.burgerIcon.elem.classList.replace("fa-xmark", "fa-bars");
+            this.burgerIcon.htmlElem.classList.replace("fa-xmark", "fa-bars");
     
         }
     }
