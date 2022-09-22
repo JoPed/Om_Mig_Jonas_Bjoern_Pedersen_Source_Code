@@ -8,9 +8,7 @@ class CreateNavbar{
         this.listElements = [];
 
         //* Reference the data in the json file.
-        this.contentData = content;
-
-        
+        this.contentData = content;      
 
         
         

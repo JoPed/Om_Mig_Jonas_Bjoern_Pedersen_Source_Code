@@ -1,12 +1,13 @@
 import content from "./ContentData.json";
 import CreateHtmlElements from "./CreateHtmlElements";
 import { gsap } from "gsap";
+import {CSSRulePlugin} from "gsap/CSSRulePlugin";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 class Content {
     constructor() {
 
-        gsap.registerPlugin(ScrollTrigger);
+        gsap.registerPlugin(ScrollTrigger, CSSRule, CSSRulePlugin);
 
         //* Reference the json data.
         this.content = content;
@@ -190,7 +191,7 @@ class Content {
             id: "futurePlans"
         });
 
-        let portugalImgFigure = new CreateHtmlElements({
+        this.portugalImgFigure = new CreateHtmlElements({
             type: "figure",
             id: "portugalImgFigure"
         });
@@ -211,9 +212,9 @@ class Content {
         this.btnPressMe.ApplyElementToParent(this.bottomContainer.htmlElem);
         this.articleFuturePlansHeading.ApplyElementToParent(this.articleFuturePlans.htmlElem);
         this.futurePlans.ApplyElementToParent(this.articleFuturePlans.htmlElem);
-        portugalImgFigure.ApplyElementToParent(this.bottomContainer.htmlElem);
-        portugalImg.ApplyElementToParent(portugalImgFigure.htmlElem);
-        portugalImgFigCaption.ApplyElementToParent(portugalImgFigure.htmlElem);
+        this.portugalImgFigure.ApplyElementToParent(this.bottomContainer.htmlElem);
+        portugalImg.ApplyElementToParent(this.portugalImgFigure.htmlElem);
+        portugalImgFigCaption.ApplyElementToParent(this.portugalImgFigure.htmlElem);
 
         portugalImgFigCaption.htmlElem.innerHTML = this.content.imageSources.altText[3];
 
@@ -229,6 +230,8 @@ class Content {
         this.SetImgSrcAndAltText();
 
         this.HandleLayeredScrollingTopMiddle();
+
+        this.HandleLayeredScrollingMiddleBottom();
     }
 
     HandleWelcomeArticleText(){
@@ -299,6 +302,16 @@ class Content {
         });
     }
 
+    HandleLayeredScrollingMiddleBottom(){
+        ScrollTrigger.create({
+            trigger: this.middleContainer.htmlElem,
+            start: "top top",
+            end: "bottom 100px",
+            pin: "#middleContainer",
+            pinSpacing: false
+        });
+    }
+
     HandleFuturePlansArticleText(){
         for(let i = 0; i < this.content.articles[1].paragraphs.length; i++){
             this.futurePlans.htmlElem.innerHTML += this.content.articles[1].paragraphs[i] + `<br><br>` 
@@ -311,6 +324,9 @@ class Content {
 
     ShowFutureArticleAndImg(){
         this.btnPressMe.htmlElem.addEventListener("click", () => {
+
+            let btnPsydoSelector = CSSRulePlugin.getRule("#bottomContainer #btnPressMe::before")            
+            let timeLine = gsap.timeline({paused: false});
             
             gsap.to(this.articleFuturePlans.htmlElem, {
                 duration: 5,
@@ -319,14 +335,69 @@ class Content {
                 ease: "bounce",
 
                 onComplete: () => {
-                    gsap.to(this.btnPressMe.htmlElem, {
-                        duration: 5,
+                    timeLine.to(this.btnPressMe.htmlElem, {
+                        duration: 2,
+                        ease: "slow",
+                        x: 25,
+        
+                        onComplete: () =>{
+                            this.btnPressMe.htmlElem.style.padding = 0;
+                            this.btnPressMe.htmlElem.innerHTML = "";  
+                            
+                            gsap.to(btnPsydoSelector, {
+                                duration: 1,
+                                height: 0,
+                                opacity: 0,
+                                ease: "slow"
+                            })
+                        }
+                    })
+        
+                    timeLine.to(this.btnPressMe.htmlElem, {
+                        duration: .8,
+                        height: .2,
+                        opacity: .5,
+                        boxShadow: "0px 0px 35px 7px rgb(240, 169, 37)",
+                        delay: .25
+                    })
+                    timeLine.to(this.btnPressMe.htmlElem, {
+                        duration: .1,
+                        opacity: .5,
+                        background: "#26ff92"
+                    })
+                    timeLine.to(this.btnPressMe.htmlElem, {
+                        duration: 0,
+                        width: 100,
+                        delay: .2
+                    })
+                    timeLine.to(this.btnPressMe.htmlElem, {
+                        duration: .1,
+                        boxShadow: "0px 0px 100px 55px rgb(255, 140, 0)",
+                        height: 0,
+                        delay: .23
+                    })
+                    timeLine.to(this.btnPressMe.htmlElem, {
+                        duration: .8,
+                        width: 500,
                         x: 2000,
-                        ease: "slow"
-                    });
+                        boxShadow: "0px 0px 85px 17px rgb(255, 140, 0)",
+                        delay: .2, 
+
+                        onComplete: () => {
+                            gsap.to(this.portugalImgFigure.htmlElem,{
+                                x: -490,
+                                duration: 2,
+                                opacity: 1,
+                                ease: "bounce"
+                            })
+                        }
+                    })
+
+                    
                 }
-            });
-        })
+            });   
+
+        });
     }
 }
 export default Content;
