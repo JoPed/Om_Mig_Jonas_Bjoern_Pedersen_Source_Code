@@ -4,7 +4,7 @@ html {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   font-family: Tahoma, sans-serif;
-  background-color: rgb(34, 40, 49);
+  background-color: rgba(92, 85, 83, 0.83);
 }
 
 *,
@@ -18,7 +18,7 @@ html {
 
 /* #region  Text */
 p {
-  color: rgba(255, 255, 255, 0.83);
+  color: rgb(255, 255, 255);
   font-size: 2rem;
   line-height: 1.5;
 }
@@ -36,7 +36,7 @@ h2 {
 }
 
 #welcomeArticle a {
-  color: rgba(255, 255, 255, 0.83);
+  color: rgb(255, 255, 255);
   text-decoration: none;
 }
 #welcomeArticle a:hover {
@@ -62,8 +62,8 @@ figure figcaption {
   position: absolute;
   left: 0;
   bottom: 0;
-  background-color: rgb(34, 40, 49);
-  color: rgba(255, 255, 255, 0.83);
+  background-color: rgba(92, 85, 83, 0.83);
+  color: rgb(255, 255, 255);
   padding: 5px 10px;
   font-size: 1.6rem;
   font-style: italic;
@@ -89,7 +89,6 @@ button {
 
 /* #region Top Container */
 #topContainer {
-  scroll-padding-top: 150px;
   width: 100%;
   height: 100vh;
   grid-column: 1/13;
@@ -121,12 +120,12 @@ button {
   margin-right: 12px;
 }
 
-/* #region  Bottom container */
+/*#endregion*/
+/* #region  Middle container */
 #middleContainer {
-  height: 100vh;
   position: relative;
   z-index: 990;
-  background-color: rgb(57, 62, 70);
+  background-color: rgb(34, 40, 49);
   width: 100%;
   grid-column: 1/13;
   grid-row: 2;
@@ -156,7 +155,7 @@ button {
   padding-right: 10px;
 }
 #middleContainer #factsSection #factsList {
-  color: rgba(255, 255, 255, 0.83);
+  color: rgb(255, 255, 255);
   font-size: 2rem;
 }
 #middleContainer #factsSection #factsList li {
@@ -166,6 +165,8 @@ button {
   margin-bottom: 10px;
 }
 
+/* #endregion */
+/* #region  Bottom container */
 #bottomContainer {
   grid-column: 1/13;
   grid-row: 3;
@@ -184,6 +185,7 @@ button {
   grid-column: 6/8;
   grid-row: 1;
   align-self: center;
+  margin-top: 50px;
   width: 100%;
   height: 100px;
   background-color: rgb(214, 90, 47);
@@ -255,11 +257,12 @@ button {
 #bottomContainer #portugalImgFigure {
   grid-column: 8/12;
   grid-row: 1;
-  width: 320px;
-  margin-top: 25px;
+  margin-top: 75px;
   position: relative;
   opacity: 0;
   left: 570px;
+  width: 320px;
+  height: 66%;
 }
 #bottomContainer #articleFuturePlans {
   grid-column: 2/7;
@@ -267,6 +270,7 @@ button {
   position: relative;
   opacity: 0;
   left: -570px;
+  margin-top: 50px;
 }
 #bottomContainer #articleFuturePlans #futurePlans {
   padding: 10px;
@@ -311,13 +315,20 @@ button {
   }
 }
 /* #endregion */
+/* #region  Footer */
+#mainFooter {
+  background-color: rgb(34, 40, 49);
+  width: 1280px;
+  height: 200px;
+  margin: 25px auto 0;
+}
+
+/* #endregion */
 /* #region  Navigation */
 #mainHeader {
-  background-color: rgb(57, 62, 70);
+  background-color: rgb(34, 40, 49);
   width: 1280px;
   min-height: 50px;
-  position: sticky;
-  top: 0;
   margin: 0 auto;
   z-index: 999;
   display: -webkit-box;
@@ -351,7 +362,7 @@ button {
   height: 75px;
 }
 #mainHeader #navbar #icon:hover {
-  color: rgba(255, 255, 255, 0.83);
+  color: rgb(255, 255, 255);
 }
 #mainHeader #mainHeader__image {
   width: 125px;
@@ -378,7 +389,7 @@ button {
   padding: 10px 20px;
 }
 #navList .navLinks:hover {
-  color: rgba(255, 255, 255, 0.83);
+  color: rgb(255, 255, 255);
 }
 
 /* #endregion */

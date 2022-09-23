@@ -56,5 +56,9 @@
             "En ung Jonas der sidder og aer en stor tiger i Thailand i 2005",
             "En meget træt Jonas der ligger og sover med sin fodbold i Portugal 2002"
         ]
+    },
+    "socialMediaIcons": {
+        "icon": ["fa-facebook-square", "fa-twitter-square", "fa-linkedin-square"],
+        "href": ["#face", "#twi", "#linkedin"]
     }
 }

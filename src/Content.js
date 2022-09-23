@@ -1,13 +1,18 @@
 import content from "./ContentData.json";
 import CreateHtmlElements from "./CreateHtmlElements";
+import Footer from "./Footer";
 import { gsap } from "gsap";
-import {CSSRulePlugin} from "gsap/CSSRulePlugin";
+import { CSSRulePlugin } from "gsap/CSSRulePlugin";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ScrollToPlugin } from "gsap/all";
+
+
+
 
 class Content {
     constructor() {
 
-        gsap.registerPlugin(ScrollTrigger, CSSRule, CSSRulePlugin);
+        gsap.registerPlugin(ScrollTrigger, CSSRulePlugin, ScrollToPlugin);
 
         //* Reference the json data.
         this.content = content;
@@ -226,6 +231,12 @@ class Content {
 
 
         /* #endregion */
+        
+        /* #region  Handle footer */
+        this.footer = new Footer(this.content);
+
+        /* #endregion */
+
 
         this.SetImgSrcAndAltText();
 
@@ -234,7 +245,7 @@ class Content {
         this.HandleLayeredScrollingMiddleBottom();
     }
 
-    HandleWelcomeArticleText(){
+    HandleWelcomeArticleText() {
         //*Hent data/text fra json filen        
         for (let i = 0; i < this.content.articles[0].paragraphs.length; i++) {
 
@@ -284,7 +295,7 @@ class Content {
             scrollTrigger: {
                 trigger: this.tigerImgFigure.htmlElem,
                 //setting scrub to a number value, means it is going to take x amount of time to catch up with the scroll trigger. Setting scrub:true instead makes it follow the scrolltrigger
-                scrub: .3,  
+                scrub: .3,
                 start: "top bottom",
                 end: "top 135px"
             },
@@ -296,25 +307,26 @@ class Content {
         ScrollTrigger.create({
             trigger: this.topContainer.htmlElem,
             start: "top top",
-            end: "bottom 100px",
-            pin: "#welcomeArticle",
+            end: "bottom 200px",
+            pin: "#topContainer",
             pinSpacing: false
         });
     }
 
-    HandleLayeredScrollingMiddleBottom(){
+    HandleLayeredScrollingMiddleBottom() {
         ScrollTrigger.create({
             trigger: this.middleContainer.htmlElem,
             start: "top top",
-            end: "bottom 100px",
+            end: "bottom top",
             pin: "#middleContainer",
             pinSpacing: false
+
         });
     }
 
-    HandleFuturePlansArticleText(){
-        for(let i = 0; i < this.content.articles[1].paragraphs.length; i++){
-            this.futurePlans.htmlElem.innerHTML += this.content.articles[1].paragraphs[i] + `<br><br>` 
+    HandleFuturePlansArticleText() {
+        for (let i = 0; i < this.content.articles[1].paragraphs.length; i++) {
+            this.futurePlans.htmlElem.innerHTML += this.content.articles[1].paragraphs[i] + `<br><br>`
         }
 
         let headingNode = document.createTextNode(this.content.articles[1].title);
@@ -322,12 +334,12 @@ class Content {
 
     }
 
-    ShowFutureArticleAndImg(){
+    ShowFutureArticleAndImg() {
         this.btnPressMe.htmlElem.addEventListener("click", () => {
 
-            let btnPsydoSelector = CSSRulePlugin.getRule("#bottomContainer #btnPressMe::before")            
-            let timeLine = gsap.timeline({paused: false});
-            
+            let btnPsydoSelector = CSSRulePlugin.getRule("#bottomContainer #btnPressMe::before")
+            let timeLine = gsap.timeline({ paused: false });
+
             gsap.to(this.articleFuturePlans.htmlElem, {
                 duration: 5,
                 x: 570,
@@ -338,12 +350,11 @@ class Content {
                     timeLine.to(this.btnPressMe.htmlElem, {
                         duration: 2,
                         ease: "slow",
-                        x: 25,
-        
-                        onComplete: () =>{
+
+                        onComplete: () => {
                             this.btnPressMe.htmlElem.style.padding = 0;
-                            this.btnPressMe.htmlElem.innerHTML = "";  
-                            
+                            this.btnPressMe.htmlElem.innerHTML = "";
+
                             gsap.to(btnPsydoSelector, {
                                 duration: 1,
                                 height: 0,
@@ -352,7 +363,7 @@ class Content {
                             })
                         }
                     })
-        
+
                     timeLine.to(this.btnPressMe.htmlElem, {
                         duration: .8,
                         height: .2,
@@ -381,23 +392,39 @@ class Content {
                         width: 500,
                         x: 2000,
                         boxShadow: "0px 0px 85px 17px rgb(255, 140, 0)",
-                        delay: .2, 
+                        delay: .2,
 
                         onComplete: () => {
-                            gsap.to(this.portugalImgFigure.htmlElem,{
+                            gsap.to(this.portugalImgFigure.htmlElem, {
                                 x: -490,
                                 duration: 2,
                                 opacity: 1,
-                                ease: "bounce"
-                            })
-                        }
-                    })
+                                ease: "bounce",
 
-                    
+                                onComplete: () => {
+
+                                    this.footer.ShowFooter();
+
+                                    setTimeout(() => {
+
+                                        gsap.to(window, {
+                                            duration: 1.5,
+                                            scrollTo: "#mainFooter"
+                                        })
+                                    }, 2000);
+
+                                }
+                            });
+                        }
+                    });
+
+
                 }
-            });   
+            });
 
         });
     }
+
+
 }
 export default Content;
