@@ -323,15 +323,7 @@ button {
 
 /* #endregion */
 
-/* #region  Footer */
-#mainFooter{
-    background-color: $col-content2;
-    width: 1280px;
-    height: 200px;
-    margin: 25px auto 0;
-}
 
-/* #endregion */
 
 /* #region  Navigation */
 #mainHeader {
@@ -393,6 +385,91 @@ button {
             color: $col-text;
         }
     }
+}
+
+/* #endregion */
+
+/* #region  Footer */
+#mainFooter {
+    background-color: $col-content2;
+    width: 1280px;
+    height: 200px;
+    margin: 25px auto 0;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    #crText {
+        margin-top: 135px;
+    }
+
+    .fa-facebook-square,
+    .fa-twitter-square,
+    .fa-linkedin {
+        color: $col-text;
+        font-size: 4.5rem;
+    }
+
+    .fa-phone, .fa-envelope, .fa-location-dot{
+        color: $col-text;
+        font-size: 2.2rem;
+    }
+
+    #soMEIcons {
+        margin-right: 20px;
+        margin-top: -45px;
+        text-align: center;
+    }
+    
+    #infoText{
+        margin-left: 20px;
+        text-align: center;
+
+
+        p{
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: center;
+
+             i{
+                margin-right: 8px;
+             }
+        }
+
+        p:nth-child(3){
+            i{
+                align-self: center;
+            }
+        }
+    }
+
+    #infoText :nth-child(2):nth-child(1){
+        align-self: center;
+    }
+    
+    #soMEIcons a {
+        display: inline-block;
+    }
+    
+    #soMEIcons a:not(:last-child){
+        margin-right: 15px;
+    }
+    
+    #infoText p, #soMEIcons p{
+        text-align: center;
+    }
+    
+    #soMEIcons p{
+        margin-bottom: 15px;
+    }
+
+    h2{
+        text-transform: uppercase;
+        font-size: 3rem;
+    }
+
 }
 
 /* #endregion */

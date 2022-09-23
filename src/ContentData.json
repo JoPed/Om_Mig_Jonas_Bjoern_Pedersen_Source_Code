@@ -58,7 +58,14 @@
         ]
     },
     "socialMediaIcons": {
-        "icon": ["fa-facebook-square", "fa-twitter-square", "fa-linkedin-square"],
-        "href": ["#face", "#twi", "#linkedin"]
-    }
+        "title": "følg mig her: ",
+        "icon": ["fa-facebook-square", "fa-twitter-square", "fa-linkedin"],
+        "href": ["https://www.facebook.com/profile.php?id=1468180457", "https://twitter.com/JoPed93", "https://www.linkedin.com/in/joped/"]
+    },
+    "info": {
+        "title": "Kontakt",
+        "value": ["21152526", "jona09h3@videndjurs.net", "8500 Grenaa"],
+        "icons": ["fa-phone", "fa-envelope", "fa-location-dot"]
+    },
+    "copyright": "&copy; Jonas Bjørn Pedersen"
 }

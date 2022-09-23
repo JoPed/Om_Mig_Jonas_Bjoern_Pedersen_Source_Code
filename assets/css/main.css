@@ -315,15 +315,6 @@ button {
   }
 }
 /* #endregion */
-/* #region  Footer */
-#mainFooter {
-  background-color: rgb(34, 40, 49);
-  width: 1280px;
-  height: 200px;
-  margin: 25px auto 0;
-}
-
-/* #endregion */
 /* #region  Navigation */
 #mainHeader {
   background-color: rgb(34, 40, 49);
@@ -390,6 +381,89 @@ button {
 }
 #navList .navLinks:hover {
   color: rgb(255, 255, 255);
+}
+
+/* #endregion */
+/* #region  Footer */
+#mainFooter {
+  background-color: rgb(34, 40, 49);
+  width: 1280px;
+  height: 200px;
+  margin: 25px auto 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+#mainFooter #crText {
+  margin-top: 135px;
+}
+#mainFooter .fa-facebook-square,
+#mainFooter .fa-twitter-square,
+#mainFooter .fa-linkedin {
+  color: rgb(255, 255, 255);
+  font-size: 4.5rem;
+}
+#mainFooter .fa-phone, #mainFooter .fa-envelope, #mainFooter .fa-location-dot {
+  color: rgb(255, 255, 255);
+  font-size: 2.2rem;
+}
+#mainFooter #soMEIcons {
+  margin-right: 20px;
+  margin-top: -45px;
+  text-align: center;
+}
+#mainFooter #infoText {
+  margin-left: 20px;
+  text-align: center;
+}
+#mainFooter #infoText p {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+#mainFooter #infoText p i {
+  margin-right: 8px;
+}
+#mainFooter #infoText p:nth-child(3) i {
+  -ms-flex-item-align: center;
+      align-self: center;
+}
+#mainFooter #infoText :nth-child(2):nth-child(1) {
+  -ms-flex-item-align: center;
+      align-self: center;
+}
+#mainFooter #soMEIcons a {
+  display: inline-block;
+}
+#mainFooter #soMEIcons a:not(:last-child) {
+  margin-right: 15px;
+}
+#mainFooter #infoText p, #mainFooter #soMEIcons p {
+  text-align: center;
+}
+#mainFooter #soMEIcons p {
+  margin-bottom: 15px;
+}
+#mainFooter h2 {
+  text-transform: uppercase;
+  font-size: 3rem;
 }
 
 /* #endregion */
