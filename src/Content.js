@@ -4,7 +4,8 @@ import Footer from "./Footer";
 import { gsap } from "gsap";
 import { CSSRulePlugin } from "gsap/CSSRulePlugin";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ScrollToPlugin } from "gsap/all";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+
 
 
 
@@ -16,6 +17,9 @@ class Content {
 
         //* Reference the json data.
         this.content = content;
+
+
+        
 
 
         //* Creating main container
@@ -191,6 +195,8 @@ class Content {
             id: "btnPressMe",
         });
 
+        this.btnPressMe.htmlElem.innerHTML = "tryk her";
+
         this.futurePlans = new CreateHtmlElements({
             type: "p",
             id: "futurePlans"
@@ -226,17 +232,19 @@ class Content {
 
         this.HandleFuturePlansArticleText();
 
-        this.ShowFutureArticleAndImg();
-
-
-
+        
+        
+        
         /* #endregion */
         
         /* #region  Handle footer */
-        this.footer = new Footer(this.content);
-
+        
         /* #endregion */
 
+        //*Reference the footer - and instantiate
+        this.footer = new Footer(this.content, gsap);
+        
+        this.ShowFutureArticleAndImg();
 
         this.SetImgSrcAndAltText();
 
@@ -335,10 +343,13 @@ class Content {
     }
 
     ShowFutureArticleAndImg() {
-        this.btnPressMe.htmlElem.addEventListener("click", () => {
-
+        this.btnPressMe.htmlElem.addEventListener("click", () => {            
+            
             let btnPsydoSelector = CSSRulePlugin.getRule("#bottomContainer #btnPressMe::before")
             let timeLine = gsap.timeline({ paused: false });
+
+
+            this.footer.ShowFooter();
 
             gsap.to(this.articleFuturePlans.htmlElem, {
                 duration: 5,
@@ -402,17 +413,10 @@ class Content {
                                 ease: "bounce",
 
                                 onComplete: () => {
-
-                                    this.footer.ShowFooter();
-
-                                    setTimeout(() => {
-
-                                        gsap.to(window, {
-                                            duration: 1.5,
-                                            scrollTo: "#mainFooter"
-                                        })
-                                    }, 2000);
-
+                                    gsap.to(window, {
+                                        duration: 1.5, 
+                                        scrollTo: "#mainFooter"
+                                    });
                                 }
                             });
                         }

@@ -7,10 +7,10 @@
             "Kontakt"
         ],
         "href": [
-            "about",
-            "facts",
-            "future",
-            "contact"
+            "welcomeArticle",
+            "factsSection",
+            "articleFuturePlans",
+            "mainFooter"
         ]
     },
     "articles": [

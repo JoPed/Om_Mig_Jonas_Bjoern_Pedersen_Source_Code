@@ -19,8 +19,8 @@ import "../assets/css/main.min.css";
 
   console.log("starting the cool->app");
 
+  
   let navbar = new CreateNavbar();
-
   let content = new Content();
 
 

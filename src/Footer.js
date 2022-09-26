@@ -1,7 +1,9 @@
 import CreateHtmlElements from "./CreateHtmlElements";
 
 class Footer{
-    constructor(content){
+    constructor(content, gsapObj){
+
+        this.gsap = gsapObj;
 
         this.data = content;
 
@@ -48,15 +50,22 @@ class Footer{
         infoTextHeading.ApplyElementToParent(this.infoText.htmlElem);
 
 
-
         this.CreateSocialMediaIcons();
         this.CreateInfoIcons();
     }
     ShowFooter() {
-        gsap.to(this.footer.htmlElem, {
+        this.gsap.to(this.footer.htmlElem, {
             height: 200,
-            duration: 2,
-            ease: "bounce"
+            duration: 8,
+            ease: "circ.out",
+            onComplete: () => {
+                console.log("completed")
+                this.gsap.to("#mainFooter > *", {
+                    opacity: 1,
+                    duration: 2,
+                    ease: "circ.out"
+                })
+            }
         });
     }
 
@@ -92,7 +101,7 @@ class Footer{
             });
 
             infoText_P.ApplyElementToParent(this.infoText.htmlElem);
-            infoText_P.htmlElem.innerHTML += `${this.data.info.value[i]}`;
+            infoText_P.htmlElem.innerHTML = `${this.data.info.value[i]}`;
             infoTextIcons.ApplyElementToParent(infoText_P.htmlElem);
 
 
