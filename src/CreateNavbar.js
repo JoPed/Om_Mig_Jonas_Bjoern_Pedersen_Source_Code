@@ -2,6 +2,7 @@ import CreateHtmlElements from "./CreateHtmlElements";
 import content from "./ContentData.json";
 import { gsap } from "gsap";
 import ScrollToPlugin from "gsap/ScrollToPlugin";
+import $ from 'jquery';
 
 class CreateNavbar {
 
@@ -15,7 +16,7 @@ class CreateNavbar {
         this.contentData = content;
 
         //*A - tag
-        this.arrayOfA = [];
+        // this.arrayOfA = [];
 
 
 
@@ -88,10 +89,9 @@ class CreateNavbar {
             this.BurgerMenuToggle();
         });
 
+
+
         this.ScrollToSection();
-
-
-       
 
     }
 
@@ -122,39 +122,48 @@ class CreateNavbar {
             let node = document.createTextNode(this.contentData.liMenuPoints.title[i]);
             a.htmlElem.appendChild(node);
 
-            this.arrayOfA.push(a.htmlElem);
+            // this.arrayOfA.push(a.htmlElem);
         }
     }
 
     //*Scroll to section
     ScrollToSection() {
 
-        this.arrayOfA.forEach(item => {
+        $("#navList .navLinks").on("click", function (event) {
 
-            item.addEventListener("click", event => {
+            //*Preventing the default action - in this case to not follow the given URL
+            event.preventDefault();
 
-                //*Preventing the default action - in this case to not follow the given URL
-                event.preventDefault();
+            let current = $(this);
+
+            let href = $(current.attr("href"));
+
+            $("#navList .navLinks").each(function () {
 
                 gsap.to(window, {
                     duration: 3,
-                    scrollTo: { y: event.currentTarget.hash }
-                });
+                    scrollTo: { y: href, offsetY: 125 }
+                });                
 
             });
 
         });
 
 
+
     }
 
     //*Highlight active section
-    HighlighActiveMenuPoint(aArr) {
-        // let scrollPos = window.scrollY + this.header.htmlElem.offsetHeight;
+    HighlighActiveMenuPoint() {
+        let scrollPos = $(document).scrollTop() + $("#mainHeader").outerHeight();
 
-        // let href = current.getAttribute("href");
+        $("#navList .navLinks").each(function () {
+            let current = $(this);
 
-        // console.log();
+            let href = $(current.attr("href"));
+
+            console.log(href);
+        })
 
         /* #region  mulig løsning fra lars */
         // let lastKnownScrollPosition = 0;

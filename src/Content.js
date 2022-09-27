@@ -251,6 +251,8 @@ class Content {
         this.HandleLayeredScrollingTopMiddle();
 
         this.HandleLayeredScrollingMiddleBottom();
+
+        
     }
 
     HandleWelcomeArticleText() {
@@ -314,20 +316,23 @@ class Content {
     HandleLayeredScrollingTopMiddle() {
         ScrollTrigger.create({
             trigger: this.topContainer.htmlElem,
-            start: "top top",
+            start: "top 125px",
             end: "bottom 200px",
-            pin: "#topContainer",
+            pin: "#welcomeArticle",
             pinSpacing: false
+            
+            
         });
+
     }
 
     HandleLayeredScrollingMiddleBottom() {
         ScrollTrigger.create({
             trigger: this.middleContainer.htmlElem,
-            start: "top top",
-            end: "bottom top",
+            start: "top 125px",
+            end: "bottom 125px",
             pin: "#middleContainer",
-            pinSpacing: false
+            pinSpacing: false   
 
         });
     }

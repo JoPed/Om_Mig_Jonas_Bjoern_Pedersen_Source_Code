@@ -242,7 +242,7 @@ button {
   grid-column: 1/13;
   grid-row: 3;
   background-color: rgb(57, 62, 70);
-  height: 90vh;
+  height: 85vh;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-auto-rows: auto;
@@ -256,7 +256,7 @@ button {
   grid-column: 6/8;
   grid-row: 1;
   align-self: center;
-  margin-top: 50px;
+  margin-top: 100px;
   width: 100%;
   height: 100px;
   background-color: rgb(214, 90, 47);
@@ -328,7 +328,7 @@ button {
 #bottomContainer #portugalImgFigure {
   grid-column: 8/12;
   grid-row: 1;
-  margin-top: 75px;
+  margin-top: 125px;
   position: relative;
   opacity: 0;
   left: 570px;
@@ -341,7 +341,7 @@ button {
   position: relative;
   opacity: 0;
   left: -570px;
-  margin-top: 50px;
+  margin-top: 100px;
 }
 #bottomContainer #articleFuturePlans #futurePlans {
   padding: 10px;

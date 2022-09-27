@@ -18,6 +18,7 @@
     "gsap": "^3.9.1",
     "howler": "^2.2.3",
     "html-webpack-plugin": "^5.5.0",
+    "jquery": "^3.6.1",
     "pixi-spine": "^3.0.13",
     "pixi.js": "^6.2.2",
     "sass": "^1.49.4",
