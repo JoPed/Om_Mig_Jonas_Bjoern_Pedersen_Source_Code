@@ -6,10 +6,7 @@ import { gsap } from "gsap";
 import { CSSRulePlugin } from "gsap/CSSRulePlugin";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
-
-
-
-
+import $ from "jquery";
 
 class Content {
     constructor() {
@@ -22,8 +19,6 @@ class Content {
 
         //* Instantiate the CreateNavbar class
         let navbar = new Navbar();
-
-        
 
 
         //* Creating main container
@@ -39,11 +34,8 @@ class Content {
         this.topContainer = new CreateHtmlElements({
             type: "div",
             id: "topContainer",
-            class: ""
+            class: "section"
         });
-
-        this.topContainer.ApplyElementToParent(this.mainContainer.htmlElem);
-
         //* Inputting content in the first container
         this.welcomeArticle = new CreateHtmlElements({
 
@@ -51,8 +43,6 @@ class Content {
             id: "welcomeArticle",
             class: ""
         });
-
-        this.welcomeArticle.ApplyElementToParent(this.topContainer.htmlElem);
 
         this.welcomeHeading = new CreateHtmlElements({
             type: "h1",
@@ -66,10 +56,6 @@ class Content {
             class: ""
         });
 
-        this.welcomeHeading.ApplyElementToParent(this.welcomeArticle.htmlElem);
-        this.welcomeText.ApplyElementToParent(this.welcomeArticle.htmlElem);
-
-        /* #region  Welcome Image - Portugal Img */
         this.welcomeImgFigure = new CreateHtmlElements({
             type: "figure",
             id: "welcomeImgFigure",
@@ -87,21 +73,23 @@ class Content {
             id: "",
             class: ""
         });
+        Window.images.push(welcomeImg.htmlElem);
 
+        this.topContainer.ApplyElementToParent(this.mainContainer.htmlElem);
+
+        this.welcomeArticle.ApplyElementToParent(this.topContainer.htmlElem);
+        this.welcomeHeading.ApplyElementToParent(this.welcomeArticle.htmlElem);
+        this.welcomeText.ApplyElementToParent(this.welcomeArticle.htmlElem);
 
         this.welcomeImgFigure.ApplyElementToParent(this.welcomeArticle.htmlElem);
         welcomeImg.ApplyElementToParent(this.welcomeImgFigure.htmlElem);
         welcomeImgFigCaption.ApplyElementToParent(this.welcomeImgFigure.htmlElem);
         welcomeImgFigCaption.htmlElem.innerHTML = this.content.imageSources.altText[1];
 
-        Window.images.push(welcomeImg.htmlElem);
-
-        this.HandleWelcomeImgGsap();
-        /* #endregion */
 
 
-        //*Handle welcome article text
-        this.HandleWelcomeArticleText();
+
+
 
         /* #endregion */
 
@@ -109,12 +97,9 @@ class Content {
         this.middleContainer = new CreateHtmlElements({
             type: "div",
             id: "middleContainer",
-            class: ""
+            class: "section"
         });
 
-        this.middleContainer.ApplyElementToParent(this.mainContainer.htmlElem);
-
-        /* #region  Tiger Image */
         this.tigerImgFigure = new CreateHtmlElements({
             type: "figure",
             id: "tigerImgFigure",
@@ -126,6 +111,7 @@ class Content {
             id: "tigerImg",
             class: ""
         });
+        Window.images.push(tigerImg.htmlElem);
 
         let tigerImgFigCaption = new CreateHtmlElements({
             type: "figcaption",
@@ -133,25 +119,12 @@ class Content {
             class: ""
         });
 
-        this.tigerImgFigure.ApplyElementToParent(this.middleContainer.htmlElem);
-        tigerImg.ApplyElementToParent(this.tigerImgFigure.htmlElem);
-        tigerImgFigCaption.ApplyElementToParent(this.tigerImgFigure.htmlElem);
-        tigerImgFigCaption.htmlElem.innerHTML = this.content.imageSources.altText[2];
-
-        Window.images.push(tigerImg.htmlElem);
-
-        this.HandleTigerImgGsap();
-
-        /* #endregion */
-
-
         let factsSection = new CreateHtmlElements({
             type: "section",
             id: "factsSection",
             class: ""
         });
 
-        factsSection.ApplyElementToParent(this.middleContainer.htmlElem);
 
         let factsHeading = new CreateHtmlElements({
             type: "h2",
@@ -159,20 +132,26 @@ class Content {
             class: ""
         });
 
-        factsHeading.htmlElem.innerHTML = this.content.facts.factsTitle;
-        factsHeading.ApplyElementToParent(factsSection.htmlElem);
-
-
-
         this.factsList = new CreateHtmlElements({
             type: "ul",
             id: "factsList",
             class: ""
         });
 
+
+        this.middleContainer.ApplyElementToParent(this.mainContainer.htmlElem);
+
+        this.tigerImgFigure.ApplyElementToParent(this.middleContainer.htmlElem);
+        tigerImg.ApplyElementToParent(this.tigerImgFigure.htmlElem);
+        tigerImgFigCaption.ApplyElementToParent(this.tigerImgFigure.htmlElem);
+        tigerImgFigCaption.htmlElem.innerHTML = this.content.imageSources.altText[2];
+
+        factsSection.ApplyElementToParent(this.middleContainer.htmlElem);
+        factsHeading.htmlElem.innerHTML = this.content.facts.factsTitle;
+        factsHeading.ApplyElementToParent(factsSection.htmlElem);
         this.factsList.ApplyElementToParent(factsSection.htmlElem);
 
-        this.CreateListItemsFactsList();
+
 
 
 
@@ -181,7 +160,8 @@ class Content {
         /* #region  Container 3 */
         this.bottomContainer = new CreateHtmlElements({
             type: "div",
-            id: "bottomContainer"
+            id: "bottomContainer",
+            class: "section"
         });
 
         this.articleFuturePlans = new CreateHtmlElements({
@@ -229,24 +209,29 @@ class Content {
         this.portugalImgFigure.ApplyElementToParent(this.bottomContainer.htmlElem);
         portugalImg.ApplyElementToParent(this.portugalImgFigure.htmlElem);
         portugalImgFigCaption.ApplyElementToParent(this.portugalImgFigure.htmlElem);
-
         portugalImgFigCaption.htmlElem.innerHTML = this.content.imageSources.altText[3];
 
 
-        this.HandleFuturePlansArticleText();
 
-        
-        
-        
+
+
+
         /* #endregion */
-        
-        /* #region  Handle footer */
-        
-        /* #endregion */
+
+        /* #region  Calling functions & instantiating footer class */
 
         //*Reference the footer - and instantiate
         this.footer = new Footer(this.content, gsap);
-        
+
+        this.HandleWelcomeImgGsap();
+
+        //*Handle welcome article text
+        this.HandleWelcomeArticleText();
+
+        this.CreateListItemsFactsList();
+        this.HandleTigerImgGsap();
+        this.HandleFuturePlansArticleText();
+
         this.ShowFutureArticleAndImg();
 
         this.SetImgSrcAndAltText();
@@ -255,13 +240,47 @@ class Content {
 
         this.HandleLayeredScrollingMiddleBottom();
 
-        navbar.HandleScrollingWithScrollTrigger();
+        navbar.HandleScrollingWithScrollTrigger("#navList .navLinks", "top 125px");
+        navbar.HandleScrollingWithScrollTrigger("#navList .navLinkFuture", "-120px 125px");
 
-        // this.getAllTriggers = ScrollTrigger.getAll();
+        const test = gsap.utils.toArray("#mainContent .section");
+        const links = gsap.utils.toArray(".links");
 
-        // this.DisableScrollTriggers();
+        test.forEach((sec, i) => {
+            let startPos;
+            if (sec.id === "topContainer") {
+                startPos = "-5px +=125px";
+            }
+            else {
+                startPos = "top +=125px";
+            }
 
-        
+            ScrollTrigger.create({
+                trigger: sec,
+                start: startPos,
+                end: "+=90% +=200px",
+                markers: true,
+
+                onEnter: () => {
+
+                    links.forEach((e) => {
+                        e.classList.remove("active");
+                    });
+                    links[i].classList.add("active");
+                },
+                onEnterBack: () => {
+
+                    console.log("enterback", sec);
+                    links.forEach((e) => {
+                        e.classList.remove("active");
+                    });
+                    links[i].classList.add("active");
+
+                }
+            });
+        })
+        /* #endregion */
+
     }
 
     SetImgSrcAndAltText() {
@@ -306,7 +325,7 @@ class Content {
             let listItem = document.createTextNode(this.content.facts.factsListItems[i]);
             li.htmlElem.appendChild(listItem);
         }
-    }    
+    }
 
     HandleTigerImgGsap() {
         //* Gsap scrolltrigger on tigerImg
@@ -320,7 +339,7 @@ class Content {
             },
             x: 590,
         });
-    }   
+    }
 
     HandleFuturePlansArticleText() {
         for (let i = 0; i < this.content.articles[1].paragraphs.length; i++) {
@@ -333,8 +352,8 @@ class Content {
     }
 
     ShowFutureArticleAndImg() {
-        this.btnPressMe.htmlElem.addEventListener("click", () => {            
-            
+        this.btnPressMe.htmlElem.addEventListener("click", () => {
+
             let btnPsydoSelector = CSSRulePlugin.getRule("#bottomContainer #btnPressMe::before")
             let timeLine = gsap.timeline({ paused: false });
 
@@ -404,7 +423,7 @@ class Content {
 
                                 onComplete: () => {
                                     gsap.to(window, {
-                                        duration: 1.5, 
+                                        duration: 1.5,
                                         scrollTo: "#mainFooter"
                                     });
                                 }
@@ -425,8 +444,8 @@ class Content {
             start: "top 125px",
             end: "bottom 200px",
             pin: "#topContainer",
-            pinSpacing: false           
-            
+            pinSpacing: false
+
         });
 
     }
@@ -437,7 +456,7 @@ class Content {
             start: "top 125px",
             end: "bottom 125px",
             pin: "#middleContainer",
-            pinSpacing: false   
+            pinSpacing: false
 
         });
     }

@@ -51,7 +51,6 @@ h2 {
     margin-top: 25px;
 }
 
-
 /* #endregion */
 
 img {
@@ -89,12 +88,13 @@ button {
 #mainContent {
     background-color: $col-content;
     width: 1280px;
-    margin: 25px auto 0;
+    margin: 0 auto;
 
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     grid-auto-rows: auto;
     overflow: hidden;
+    row-gap: 15px;
 
 }
 
@@ -105,7 +105,7 @@ button {
     position: sticky;
     top: 0;
     min-height: 50px;
-    margin: 0 auto;
+    margin: 0 auto 25px;
     z-index: 999;
 
     display: flex;
@@ -157,6 +157,28 @@ button {
 
         &:hover {
             color: $col-text;
+        }
+
+        &.active {
+            color: $col-text;
+            font-weight: 600;
+        }
+    }
+
+    .navLinkFuture {
+        text-decoration: none;
+        font-size: 2.5rem;
+        color: $col-navLinks;
+        display: inline-block;
+        padding: 10px 20px;
+
+        &:hover {
+            color: $col-text;
+        }
+
+        &.active {
+            color: $col-text;
+            font-weight: 600;
         }
     }
 }
@@ -402,7 +424,7 @@ button {
     align-items: center;
 
     //*Selects every child of #mainFooter
-    & > * {
+    &>* {
         opacity: 0;
 
     }
@@ -418,7 +440,9 @@ button {
         font-size: 4.5rem;
     }
 
-    .fa-phone, .fa-envelope, .fa-location-dot{
+    .fa-phone,
+    .fa-envelope,
+    .fa-location-dot {
         color: $col-text;
         font-size: 2.2rem;
     }
@@ -428,50 +452,51 @@ button {
         margin-top: -45px;
         text-align: center;
     }
-    
-    #infoText{
+
+    #infoText {
         margin-left: 20px;
         text-align: center;
 
 
-        p{
+        p {
             display: flex;
             flex-direction: row-reverse;
             justify-content: center;
 
-             i{
+            i {
                 margin-right: 8px;
-             }
+            }
         }
 
-        p:nth-child(3){
-            i{
+        p:nth-child(3) {
+            i {
                 align-self: center;
             }
         }
     }
 
-    #infoText :nth-child(2):nth-child(1){
+    #infoText :nth-child(2):nth-child(1) {
         align-self: center;
     }
-    
+
     #soMEIcons a {
         display: inline-block;
     }
-    
-    #soMEIcons a:not(:last-child){
+
+    #soMEIcons a:not(:last-child) {
         margin-right: 15px;
     }
-    
-    #infoText p, #soMEIcons p{
+
+    #infoText p,
+    #soMEIcons p {
         text-align: center;
     }
-    
-    #soMEIcons p{
+
+    #soMEIcons p {
         margin-bottom: 15px;
     }
 
-    h2{
+    h2 {
         text-transform: uppercase;
         font-size: 3rem;
     }

@@ -80,11 +80,12 @@ button {
 #mainContent {
   background-color: rgb(57, 62, 70);
   width: 1280px;
-  margin: 25px auto 0;
+  margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-auto-rows: auto;
   overflow: hidden;
+  row-gap: 15px;
 }
 
 /* #region  Navigation */
@@ -94,7 +95,7 @@ button {
   position: sticky;
   top: 0;
   min-height: 50px;
-  margin: 0 auto;
+  margin: 0 auto 25px;
   z-index: 999;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -155,6 +156,24 @@ button {
 }
 #navList .navLinks:hover {
   color: rgb(255, 255, 255);
+}
+#navList .navLinks.active {
+  color: rgb(255, 255, 255);
+  font-weight: 600;
+}
+#navList .navLinkFuture {
+  text-decoration: none;
+  font-size: 2.5rem;
+  color: rgba(214, 90, 49, 0.83);
+  display: inline-block;
+  padding: 10px 20px;
+}
+#navList .navLinkFuture:hover {
+  color: rgb(255, 255, 255);
+}
+#navList .navLinkFuture.active {
+  color: rgb(255, 255, 255);
+  font-weight: 600;
 }
 
 /* #endregion */
@@ -419,7 +438,9 @@ button {
   color: rgb(255, 255, 255);
   font-size: 4.5rem;
 }
-#mainFooter .fa-phone, #mainFooter .fa-envelope, #mainFooter .fa-location-dot {
+#mainFooter .fa-phone,
+#mainFooter .fa-envelope,
+#mainFooter .fa-location-dot {
   color: rgb(255, 255, 255);
   font-size: 2.2rem;
 }
@@ -461,7 +482,8 @@ button {
 #mainFooter #soMEIcons a:not(:last-child) {
   margin-right: 15px;
 }
-#mainFooter #infoText p, #mainFooter #soMEIcons p {
+#mainFooter #infoText p,
+#mainFooter #soMEIcons p {
   text-align: center;
 }
 #mainFooter #soMEIcons p {

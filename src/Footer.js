@@ -59,7 +59,6 @@ class Footer{
             duration: 8,
             ease: "circ.out",
             onComplete: () => {
-                console.log("completed")
                 this.gsap.to("#mainFooter > *", {
                     opacity: 1,
                     duration: 2,

@@ -17,8 +17,6 @@ import "../assets/css/main.min.css";
 
   //*Global array, to store images on the site
   Window.images = [];
-
-  console.log("starting the cool->app");
   
   let content = new Content();
 

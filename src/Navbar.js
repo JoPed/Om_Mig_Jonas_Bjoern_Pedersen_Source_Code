@@ -79,7 +79,6 @@ class Navbar {
 
         this.burgerIcon.ApplyElementToParent(btnBurgerIcon.htmlElem);
 
-
         //*Function to create li->a with href and textnode
         this.CreateMenuPoints();
 
@@ -105,11 +104,21 @@ class Navbar {
             this.listElements.push(li.htmlElem);
 
             //*Creating an a element with href, and applying them to the li's with a textnode
-            let a = new CreateHtmlElements({
-                type: "a",
-                id: "",
-                class: "navLinks"
-            });
+            let a;
+            if (i != 2) {
+                a = new CreateHtmlElements({
+                    type: "a",
+                    id: "",
+                    class: "navLinks.links"
+                });
+            }
+            else {
+                a = new CreateHtmlElements({
+                    type: "a",
+                    id: "",
+                    class: "navLinkFuture.links"
+                });
+            }
 
             a.ApplyElementToParent(li.htmlElem);
             a.htmlElem.href = `#${this.contentData.liMenuPoints.href[i]}`;
@@ -120,24 +129,25 @@ class Navbar {
         }
     }
 
-    HandleScrollingWithScrollTrigger() {
-        let links = gsap.utils.toArray("#navList .navLinks");
+    HandleScrollingWithScrollTrigger(selector, scrollPosition) {
+        let links = gsap.utils.toArray(selector);
         this.linkTargets = links.map(link => document.querySelector(link.getAttribute("href")));
-        
+
 
         //* Get the returned value of GetScrollLookUp and store it in a variable.        
-        this.getScroll = this.GetScrollLookup(this.linkTargets, "top 125px");
+        let getScroll = this.GetScrollLookup(this.linkTargets, scrollPosition);
 
 
         links.forEach((link, i) => {
             let target = this.linkTargets[i];
             link.addEventListener("click", e => {
-
+                
                 //*Prevent default link behaviour
-                e.preventDefault();
+                e.preventDefault()
+
                 gsap.to(window, {
                     duration: 5,
-                    scrollTo: this.getScroll(target),
+                    scrollTo: getScroll(target),
                     overwrite: "auto"
                 });
             });
@@ -154,7 +164,7 @@ class Navbar {
     - containerAnimation: [optional] the horizontal scrolling tween/timeline. Must have an ease of "none"/"linear".
     */
     GetScrollLookup(targets, position, containerAnimation) {
-        let triggers = gsap.utils.toArray(targets).map(el => ScrollTrigger.create({
+        let triggers = gsap.utils.toArray(targets).map((el, i) => ScrollTrigger.create({
             trigger: el,
             start: position || "top top",
             refreshPriority: -10,
@@ -172,59 +182,6 @@ class Navbar {
         };
     }
 
-    //*Highlight active section
-    HighlighActiveMenuPoint() {
-        let scrollPos = $(document).scrollTop() + $("#mainHeader").outerHeight();
-
-        $("#navList .navLinks").each(function () {
-            let current = $(this);
-
-            let href = $(current.attr("href"));
-
-            console.log(href);
-        })
-
-        /* #region  mulig løsning fra lars */
-        // let lastKnownScrollPosition = 0;
-        // let ticking = false;
-
-        // let welcomeArticle = document.querySelector("#welcomeArticle");
-        // let facts = document.querySelector("#factsSection");
-        // let future = document.querySelector("#articleFuturePlans");
-        // let contact = document.querySelector("#mainFooter");
-
-        // console.log(welcomeArticle);
-        // console.log(facts);
-        // console.log(future);
-        // console.log(contact);
-
-        // document.addEventListener('scroll', event => {
-
-        //     console.log(this);
-
-        //     let welcomeArticleRect = welcomeArticle.getBoundingClientRect();
-        //     if (!ticking) {
-
-        //         window.requestAnimationFrame(() => {
-        //             console.log("y: " + welcomeArticleRect.y);
-        //             console.log("Im scrolling");
-
-        //             if(welcomeArticleRect.y <= 150){
-        //                 console.log(aArr);
-        //             }
-
-        //             //doSomething(lastKnownScrollPosition);
-
-        //             ticking = false;
-
-        //         });
-        //         ticking = true;
-
-        //     }
-        // });
-        /* #endregion */
-    }
-
     BurgerMenuToggle() {
 
         // Hvis nav elementet kun har class="nav" skal class=responsive tilføjes 
@@ -239,8 +196,6 @@ class Navbar {
             this.listElements.forEach(item => {
                 item.style.display = "block";
             })
-
-
         }
         else {
 
