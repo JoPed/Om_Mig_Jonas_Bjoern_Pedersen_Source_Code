@@ -22,8 +22,6 @@ class CreateHtmlElements {
             this.obj.id = "";
         }
 
-
-
         //*Lav et html element og gem det i en miljø variable
         this.htmlElem = document.createElement(this.obj.type);
     }

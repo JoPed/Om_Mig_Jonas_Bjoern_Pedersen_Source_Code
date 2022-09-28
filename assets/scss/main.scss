@@ -210,7 +210,7 @@ button {
     background-color: $col-content2;
 
     width: 100%;
-    // height: 100vh;
+    height: 100vh;
     grid-column: 1/13;
     grid-row: 2;
 
@@ -258,7 +258,7 @@ button {
     grid-column: 1/13;
     grid-row: 3;
     background-color: $col-content;
-    height: 85vh;
+    height: 100vh;
 
     display: grid;
     grid-template-columns: repeat(12, 1fr);

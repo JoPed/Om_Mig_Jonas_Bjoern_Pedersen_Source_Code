@@ -198,6 +198,7 @@ button {
   z-index: 990;
   background-color: rgb(34, 40, 49);
   width: 100%;
+  height: 100vh;
   grid-column: 1/13;
   grid-row: 2;
   display: -webkit-box;
@@ -242,7 +243,7 @@ button {
   grid-column: 1/13;
   grid-row: 3;
   background-color: rgb(57, 62, 70);
-  height: 85vh;
+  height: 100vh;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-auto-rows: auto;

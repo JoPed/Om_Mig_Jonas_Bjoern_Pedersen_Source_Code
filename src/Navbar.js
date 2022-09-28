@@ -2,21 +2,23 @@ import CreateHtmlElements from "./CreateHtmlElements";
 import content from "./ContentData.json";
 import { gsap } from "gsap";
 import ScrollToPlugin from "gsap/ScrollToPlugin";
+import ScrollTrigger from "gsap/ScrollTrigger";
 import $ from 'jquery';
 
-class CreateNavbar {
+class Navbar {
 
     constructor() {
 
-        gsap.registerPlugin(ScrollToPlugin);
+        gsap.registerPlugin(ScrollToPlugin, ScrollTrigger);
 
         this.listElements = [];
 
+        this.scrollPos = "";
+
+        this.getScroll;
+
         //* Reference the data in the json file.
         this.contentData = content;
-
-        //*A - tag
-        // this.arrayOfA = [];
 
 
 
@@ -66,8 +68,6 @@ class CreateNavbar {
             class: ""
         });
 
-
-
         btnBurgerIcon.ApplyElementToParent(nav.htmlElem);
 
         //* if/when adding more than one class to an element, please seperate using a dot/period (.)
@@ -83,15 +83,9 @@ class CreateNavbar {
         //*Function to create li->a with href and textnode
         this.CreateMenuPoints();
 
-        // let handleMenu = new Navigation(this.ul, this.listElements, burgerIcon);
-
         btnBurgerIcon.htmlElem.addEventListener("click", () => {
             this.BurgerMenuToggle();
         });
-
-
-
-        this.ScrollToSection();
 
     }
 
@@ -126,31 +120,56 @@ class CreateNavbar {
         }
     }
 
-    //*Scroll to section
-    ScrollToSection() {
+    HandleScrollingWithScrollTrigger() {
+        let links = gsap.utils.toArray("#navList .navLinks");
+        this.linkTargets = links.map(link => document.querySelector(link.getAttribute("href")));
+        
 
-        $("#navList .navLinks").on("click", function (event) {
+        //* Get the returned value of GetScrollLookUp and store it in a variable.        
+        this.getScroll = this.GetScrollLookup(this.linkTargets, "top 125px");
 
-            //*Preventing the default action - in this case to not follow the given URL
-            event.preventDefault();
 
-            let current = $(this);
+        links.forEach((link, i) => {
+            let target = this.linkTargets[i];
+            link.addEventListener("click", e => {
 
-            let href = $(current.attr("href"));
-
-            $("#navList .navLinks").each(function () {
-
+                //*Prevent default link behaviour
+                e.preventDefault();
                 gsap.to(window, {
-                    duration: 3,
-                    scrollTo: { y: href, offsetY: 125 }
-                });                
-
+                    duration: 5,
+                    scrollTo: this.getScroll(target),
+                    overwrite: "auto"
+                });
             });
-
         });
+    }
 
 
-
+    //* Helper function from GSAP member on their forum.
+    // https://greensock.com/forums/topic/34010-scrollto-problems-while-using-scrolltrigger/
+    /*
+    Returns a FUNCTION that you can feed an element to get its scroll position.
+    - targets: selector text, element, or Array of elements 
+    - position: defaults to "top top" but can be anything like "center center", "100px 80%", etc. Same format as "start" and "end" ScrollTrigger values.
+    - containerAnimation: [optional] the horizontal scrolling tween/timeline. Must have an ease of "none"/"linear".
+    */
+    GetScrollLookup(targets, position, containerAnimation) {
+        let triggers = gsap.utils.toArray(targets).map(el => ScrollTrigger.create({
+            trigger: el,
+            start: position || "top top",
+            refreshPriority: -10,
+            containerAnimation: containerAnimation
+        })),
+            st = containerAnimation && containerAnimation.scrollTrigger;
+        return target => {
+            let t = gsap.utils.toArray(target)[0],
+                i = triggers.length;
+            while (i-- && triggers[i].trigger !== t) { };
+            if (i < 0) {
+                return console.warn("target not found", target);
+            }
+            return containerAnimation ? st.start + (triggers[i].start / containerAnimation.duration()) * (st.end - st.start) : triggers[i].start;
+        };
     }
 
     //*Highlight active section
@@ -253,4 +272,4 @@ class CreateNavbar {
 
 
 }
-export default CreateNavbar;
+export default Navbar;

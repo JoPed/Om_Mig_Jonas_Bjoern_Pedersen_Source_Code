@@ -1,5 +1,6 @@
 import content from "./ContentData.json";
 import CreateHtmlElements from "./CreateHtmlElements";
+import Navbar from "./Navbar";
 import Footer from "./Footer";
 import { gsap } from "gsap";
 import { CSSRulePlugin } from "gsap/CSSRulePlugin";
@@ -12,12 +13,15 @@ import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 
 class Content {
     constructor() {
-
         gsap.registerPlugin(ScrollTrigger, CSSRulePlugin, ScrollToPlugin);
+
 
         //* Reference the json data.
         this.content = content;
 
+
+        //* Instantiate the CreateNavbar class
+        let navbar = new Navbar();
 
         
 
@@ -25,8 +29,7 @@ class Content {
         //* Creating main container
         this.mainContainer = new CreateHtmlElements({
             type: "main",
-            id: "mainContent",
-            class: ""
+            id: "mainContent"
         });
 
         this.mainContainer.ApplyElementToParent(document.body);
@@ -252,7 +255,21 @@ class Content {
 
         this.HandleLayeredScrollingMiddleBottom();
 
+        navbar.HandleScrollingWithScrollTrigger();
+
+        // this.getAllTriggers = ScrollTrigger.getAll();
+
+        // this.DisableScrollTriggers();
+
         
+    }
+
+    SetImgSrcAndAltText() {
+        for (let i = 0; i < Window.images.length; i++) {
+
+            Window.images[i].alt = this.content.imageSources.altText[i];
+            Window.images[i].src = this.content.imageSources.pc[i];
+        }
     }
 
     HandleWelcomeArticleText() {
@@ -264,6 +281,16 @@ class Content {
         }
         this.welcomeText.htmlElem.innerHTML += this.content.articles[0].link;
         this.welcomeHeading.htmlElem.innerHTML = this.content.articles[0].title;
+    }
+
+    HandleWelcomeImgGsap() {
+        //*Fading the first image (that is already in the viewport)
+        gsap.to(this.welcomeImgFigure.htmlElem, {
+            opacity: 1,
+            duration: 10,
+            ease: "slow"
+
+        });
     }
 
     CreateListItemsFactsList() {
@@ -279,25 +306,7 @@ class Content {
             let listItem = document.createTextNode(this.content.facts.factsListItems[i]);
             li.htmlElem.appendChild(listItem);
         }
-    }
-
-    SetImgSrcAndAltText() {
-        for (let i = 0; i < Window.images.length; i++) {
-
-            Window.images[i].alt = this.content.imageSources.altText[i];
-            Window.images[i].src = this.content.imageSources.pc[i];
-        }
-    }
-
-    HandleWelcomeImgGsap() {
-        //*Fading the first image (that is already in the viewport)
-        gsap.to(this.welcomeImgFigure.htmlElem, {
-            opacity: 1,
-            duration: 10,
-            ease: "slow"
-
-        });
-    }
+    }    
 
     HandleTigerImgGsap() {
         //* Gsap scrolltrigger on tigerImg
@@ -311,31 +320,7 @@ class Content {
             },
             x: 590,
         });
-    }
-
-    HandleLayeredScrollingTopMiddle() {
-        ScrollTrigger.create({
-            trigger: this.topContainer.htmlElem,
-            start: "top 125px",
-            end: "bottom 200px",
-            pin: "#welcomeArticle",
-            pinSpacing: false
-            
-            
-        });
-
-    }
-
-    HandleLayeredScrollingMiddleBottom() {
-        ScrollTrigger.create({
-            trigger: this.middleContainer.htmlElem,
-            start: "top 125px",
-            end: "bottom 125px",
-            pin: "#middleContainer",
-            pinSpacing: false   
-
-        });
-    }
+    }   
 
     HandleFuturePlansArticleText() {
         for (let i = 0; i < this.content.articles[1].paragraphs.length; i++) {
@@ -430,6 +415,29 @@ class Content {
 
                 }
             });
+
+        });
+    }
+
+    HandleLayeredScrollingTopMiddle() {
+        ScrollTrigger.create({
+            trigger: this.topContainer.htmlElem,
+            start: "top 125px",
+            end: "bottom 200px",
+            pin: "#topContainer",
+            pinSpacing: false           
+            
+        });
+
+    }
+
+    HandleLayeredScrollingMiddleBottom() {
+        ScrollTrigger.create({
+            trigger: this.middleContainer.htmlElem,
+            start: "top 125px",
+            end: "bottom 125px",
+            pin: "#middleContainer",
+            pinSpacing: false   
 
         });
     }
