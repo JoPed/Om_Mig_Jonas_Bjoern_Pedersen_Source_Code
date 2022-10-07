@@ -414,7 +414,7 @@ button {
 #mainFooter {
     background-color: $col-content2;
     width: 1280px;
-    // height: 0;
+    height: 0;
     margin: 25px auto 0;
 
     display: flex;
@@ -423,10 +423,10 @@ button {
     align-items: center;
 
     //*Selects every child of #mainFooter
-    /*&>* {
+    &>* {
         opacity: 0;
 
-    }*/
+    }
 
     #crText {
         margin-top: 135px;

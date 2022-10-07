@@ -406,6 +406,7 @@ button {
 #mainFooter {
   background-color: rgb(34, 40, 49);
   width: 1280px;
+  height: 0;
   margin: 25px auto 0;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -420,10 +421,9 @@ button {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  /*&>* {
-      opacity: 0;
-
-  }*/
+}
+#mainFooter > * {
+  opacity: 0;
 }
 #mainFooter #crText {
   margin-top: 135px;
