@@ -3,6 +3,7 @@ import content from "./ContentData.json";
 import { gsap } from "gsap";
 import ScrollToPlugin from "gsap/ScrollToPlugin";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import $ from "jquery";
 
 class Navbar {
 
@@ -66,7 +67,7 @@ class Navbar {
 
         //* if/when adding more than one class to an element, please seperate using a dot/period (.)
         this.burgerIcon = new CreateHtmlElements({
-            type: "i",
+            type: "svg",
             id: "fa-Icon",
             class: "fa-solid.fa-bars"
         });
@@ -76,11 +77,39 @@ class Navbar {
         //*Function to create li->a with href and textnode
         this.CreateMenuPoints();
 
-        btnBurgerIcon.htmlElem.addEventListener("click", () => {
-            this.BurgerMenuToggle();
-        });
+        $("#icon").on("click", function () {
 
-        console.log(window.innerHeight);
+            $(this).find('[data-fa-i2svg]').toggleClass("fa-xmark").toggleClass("fa-bars");
+
+            // Hvis nav elementet kun har class="nav" skal class=responsive tilføjes 
+            if (!$("#navList").prop('classList').contains("responsive")) {
+
+                // Tilføj responsive class, da den ikke har den i forvejen.
+                $("#navList").prop('classList').add("responsive");
+
+                //Looper gennem array med li elementer og sætter display:block på dem alle sammen
+                // this.listElements.forEach(item => {
+                //     item.style.display = "block";
+                // })
+                $("#navList li").each((index, item) => {
+                    item.style.display = "block";
+                })
+            }
+            else {
+
+                //Fjern responsive class, da den har den i forvejen
+                $("#navList").prop('classList').remove("responsive");
+
+                //Looper gennem array med li elementer og sætter display:none på dem alle sammen
+                // this.listElements.forEach(item => {
+                //     item.style.display = "none";
+                // })
+                $("#navList li").each((index, item) => {
+                    item.style.display = "none";
+                })
+
+            }
+        });
 
     }
 
@@ -135,7 +164,7 @@ class Navbar {
         links.forEach((link, i) => {
             let target = this.linkTargets[i];
             link.addEventListener("click", e => {
-                
+
                 //*Prevent default link behaviour
                 e.preventDefault()
 
@@ -148,7 +177,7 @@ class Navbar {
         });
     }
 
-    HighlighMenuPoints(){
+    HighlighMenuPoints() {
         const contentSections = gsap.utils.toArray(".content");
         const navLinks = gsap.utils.toArray(".contentLinks");
 
@@ -165,15 +194,15 @@ class Navbar {
             }
 
             //* The end position of the bottom container should be different, to make it highlight onenterback after highlighting the footer.
-            if(sec.id === "bottomContainer"){
+            if (sec.id === "bottomContainer") {
                 endPos = "+=25% +=200px";
             }
-            else{
+            else {
                 endPos = "+=90% +=200px";
             }
 
             //* Create a scrolltrigger, foreach content container (topContainer, middleContainer, bottomContainer, mainFooter);
-           ScrollTrigger.create({
+            ScrollTrigger.create({
                 trigger: sec,
                 start: startPos,
                 end: endPos,
@@ -197,10 +226,10 @@ class Navbar {
             });
 
 
-            
-            window.addEventListener("scroll", ()=> {
 
-                if(window.scrollY >= 2143){
+            window.addEventListener("scroll", () => {
+
+                if (window.scrollY >= 2143) {
 
                     navLinks.forEach((e) => {
                         e.classList.remove("active");
@@ -208,66 +237,23 @@ class Navbar {
                     navLinks[3].classList.add("active");
                 }
                 //*Removing the active class for kontakt again, if the scrollbar has not reached near bottom.
-                else{
-                    navLinks[3].classList.remove("active");           
+                else {
+                    navLinks[3].classList.remove("active");
                 }
 
-                
+
 
 
                 //* Removing active class, when scrolling to the top og the page
-                if(window.scrollY <= 25){
+                if (window.scrollY <= 25) {
                     navLinks.forEach((e) => {
                         e.classList.remove("active");
                     });
                 }
             });
 
-            
+
         })
-    }
-
-    BurgerMenuToggle() {
-
-        // Hvis nav elementet kun har class="nav" skal class=responsive tilføjes 
-        if (!this.ul.htmlElem.classList.contains("responsive")) {
-
-            // Tilføj responsive class, da den ikke har den i forvejen.
-            this.ul.htmlElem.classList.add("responsive");
-
-            this.ChangeIcon();
-
-            //Looper gennem array med li elementer og sætter display:block på dem alle sammen
-            this.listElements.forEach(item => {
-                item.style.display = "block";
-            })
-        }
-        else {
-
-            //Fjern responsive class, da den har den i forvejen
-            this.ul.htmlElem.classList.remove("responsive");
-            this.ChangeIcon();
-
-            //Looper gennem array med li elementer og sætter display:none på dem alle sammen
-            this.listElements.forEach(item => {
-                item.style.display = "none";
-            })
-
-        }
-    }
-
-    ChangeIcon() {
-        // Hvis ikonet (i elementet) inde i knappen har en klass fa-bars (de streg menu streger)
-        if (this.burgerIcon.htmlElem.classList.contains("fa-bars")) {
-
-            // Erstat menu bar ikon med xmark 
-            this.burgerIcon.htmlElem.classList.replace("fa-bars", "fa-xmark");
-        }
-        else {
-            // Erstat xmark ikon med menu bar 
-            this.burgerIcon.htmlElem.classList.replace("fa-xmark", "fa-bars");
-
-        }
     }
 
     //* Helper function from GSAP member on their forum.

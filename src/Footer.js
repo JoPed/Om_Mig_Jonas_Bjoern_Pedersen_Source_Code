@@ -101,7 +101,7 @@ class Footer{
             });
 
             infoText_P.ApplyElementToParent(this.infoText.htmlElem);
-            infoText_P.htmlElem.innerHTML = `${this.data.info.value[i]}`;
+            infoText_P.htmlElem.innerHTML =`${this.data.info.value[i]}`;
             infoTextIcons.ApplyElementToParent(infoText_P.htmlElem);
 
 

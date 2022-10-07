@@ -4,8 +4,9 @@ import Content from "./Content";
 //*HTML - Head
 document.title = "Om Mig";
 
-//* Til brug af forskellige ikoner, https://fontawesome.com/
-import "../assets/fontawesome/css/all.min.css";
+//* Til brug af forskellige ikoner, npmjs -> fortawesome/fontawesome-free
+import "@fortawesome/fontawesome-free/js/all.js"
+
 
 
 import "../assets/css/main.min.css";

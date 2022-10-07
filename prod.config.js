@@ -26,16 +26,14 @@ module.exports = {
     },
 
 
-    plugins: [
-        
-        new webpack.ProvidePlugin({
-            PIXI: 'pixi.js'
-          }),
-        
+    plugins: [       
 
         new CopyPlugin({
             patterns: [
-              { from: "./assets", to: "./assets" },
+              { 
+                from: "./assets", 
+                to: "./assets"
+             },
             
             ],
             options: {

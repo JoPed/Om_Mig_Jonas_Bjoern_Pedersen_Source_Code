@@ -1,5 +1,6 @@
 @import "variables";
 
+
 html {
     font-size: 10px;
     box-sizing: border-box;
@@ -413,7 +414,7 @@ button {
 #mainFooter {
     background-color: $col-content2;
     width: 1280px;
-    height: 0;
+    // height: 0;
     margin: 25px auto 0;
 
     display: flex;
@@ -422,17 +423,17 @@ button {
     align-items: center;
 
     //*Selects every child of #mainFooter
-    &>* {
+    /*&>* {
         opacity: 0;
 
-    }
+    }*/
 
     #crText {
         margin-top: 135px;
     }
 
-    .fa-facebook-square,
-    .fa-twitter-square,
+    .fa-square-facebook,
+    .fa-square-twitter,
     .fa-linkedin {
         color: $col-text;
         font-size: 4.5rem;
@@ -449,6 +450,7 @@ button {
         margin-right: 20px;
         margin-top: -45px;
         text-align: center;
+
     }
 
     #infoText {
@@ -461,13 +463,13 @@ button {
             flex-direction: row-reverse;
             justify-content: center;
 
-            i {
+            &>*{
                 margin-right: 8px;
             }
         }
 
         p:nth-child(3) {
-            i {
+            :nth-child(1) {
                 align-self: center;
             }
         }

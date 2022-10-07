@@ -406,7 +406,6 @@ button {
 #mainFooter {
   background-color: rgb(34, 40, 49);
   width: 1280px;
-  height: 0;
   margin: 25px auto 0;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -421,15 +420,16 @@ button {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-}
-#mainFooter > * {
-  opacity: 0;
+  /*&>* {
+      opacity: 0;
+
+  }*/
 }
 #mainFooter #crText {
   margin-top: 135px;
 }
-#mainFooter .fa-facebook-square,
-#mainFooter .fa-twitter-square,
+#mainFooter .fa-square-facebook,
+#mainFooter .fa-square-twitter,
 #mainFooter .fa-linkedin {
   color: rgb(255, 255, 255);
   font-size: 4.5rem;
@@ -461,10 +461,10 @@ button {
       -ms-flex-pack: center;
           justify-content: center;
 }
-#mainFooter #infoText p i {
+#mainFooter #infoText p > * {
   margin-right: 8px;
 }
-#mainFooter #infoText p:nth-child(3) i {
+#mainFooter #infoText p:nth-child(3) :nth-child(1) {
   -ms-flex-item-align: center;
       align-self: center;
 }
