@@ -1,5 +1,4 @@
-# ES6-boilerplate
-Boilerplate for ES6 javascript
+# Aflevering i Programmering lavet i JavaScript ES6 i webpack miljø. Blandt andet er der brugt SCSS, GSAP (javascript bibliotek). Alt Html er lavet gennem JavasScript. 
 
-Link: https://codepen.io/gregOnCodePen/pen/gOmRyRP
+Husk at køre 'npm install' for at få projektet til at køre. 
 
