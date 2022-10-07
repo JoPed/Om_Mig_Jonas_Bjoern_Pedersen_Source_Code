@@ -200,13 +200,13 @@ button {
 }
 #topContainer #welcomeArticle p {
   padding: 0 10px;
-  grid-row: 2;
+  grid-row: 2/4;
   grid-column: 1/8;
 }
 #topContainer #welcomeArticle #welcomeImgFigure {
   margin-top: 10px;
   opacity: 0;
-  grid-row: 1/4;
+  grid-row: 2;
   grid-column: 8/13;
   margin-right: 12px;
 }
@@ -227,14 +227,11 @@ button {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  -webkit-column-gap: 200px;
-     -moz-column-gap: 200px;
-          column-gap: 200px;
 }
 #middleContainer #tigerImgFigure {
-  margin-top: 30px;
+  margin-top: 143px;
   opacity: 1;
-  width: 45%;
+  width: 40%;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
@@ -243,7 +240,7 @@ button {
 }
 #middleContainer #factsSection {
   margin-top: 25px;
-  width: 43%;
+  width: 55%;
   padding-right: 10px;
 }
 #middleContainer #factsSection #factsList {
@@ -272,12 +269,11 @@ button {
   padding-top: 10px;
 }
 #bottomContainer #btnPressMe {
-  grid-column: 6/8;
+  grid-column: 5/9;
   grid-row: 1;
   align-self: center;
-  margin-top: -176px;
-  left: 25%;
-  width: 100%;
+  justify-self: center;
+  width: 200px;
   height: 100px;
   background-color: rgb(214, 90, 47);
   position: relative;
@@ -350,11 +346,11 @@ button {
   grid-row: 1;
   position: relative;
   margin-top: 15px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
   opacity: 0;
   left: 570px;
-}
-#bottomContainer #portugalImgFigure figcaption {
-  bottom: 181px;
 }
 #bottomContainer #articleFuturePlans {
   grid-column: 1/6;

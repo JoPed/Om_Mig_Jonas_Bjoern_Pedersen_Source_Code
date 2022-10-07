@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@600&display=swap");
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 1280px) {
   #mainContent {
     width: 100%;
   }
@@ -86,21 +86,28 @@
   #bottomContainer {
     grid-column: 1/7;
     grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(2, 1fr);
   }
   #bottomContainer #btnPressMe {
     grid-column: 3/5;
-    width: 200px;
-    left: 12%;
   }
   #bottomContainer #portugalImgFigure {
     grid-column: 5/7;
-    padding-right: 10px;
+    margin-right: 10px;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+    align-self: center;
   }
   #bottomContainer #portugalImgFigure figcaption {
-    bottom: 163px;
+    bottom: 0;
   }
   #bottomContainer #articleFuturePlans {
     grid-column: 1/4;
+    grid-row: 1;
+  }
+  #bottomContainer #articleFuturePlans #futurePlans {
+    padding: 10px 10px 0 10px;
   }
   #mainFooter {
     width: 100%;

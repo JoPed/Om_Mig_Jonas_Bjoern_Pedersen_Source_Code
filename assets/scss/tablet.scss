@@ -1,6 +1,6 @@
 @import "variables";
 
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 1280px) {
     #mainContent {
         width: 100%;
     }
@@ -99,23 +99,33 @@
 
         grid-template-columns: repeat(6, 1fr);
 
+        //*To make the image be in the middle of row one. Since bottomContainer has fixed height of 100vh.
+        grid-template-rows: repeat(2, 1fr);
+
         #btnPressMe {
+
             grid-column: 3/5;
-            width: 200px;
-            left: 12%;
         }
 
         #portugalImgFigure {
             grid-column: 5/7;
-            padding-right: 10px;
+            margin-right: 10px;
+            height: fit-content;
+            align-self: center;
 
             figcaption {
-                bottom: 163px;
+                bottom: 0;
             }
         }
 
         #articleFuturePlans {
             grid-column: 1/4;
+            grid-row: 1;
+            
+
+            #futurePlans{
+                padding: 10px 10px 0 10px;
+            }
         }
     }
 

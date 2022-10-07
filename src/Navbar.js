@@ -80,6 +80,8 @@ class Navbar {
             this.BurgerMenuToggle();
         });
 
+        console.log(window.innerHeight);
+
     }
 
     //* Create li elements, append to their parent (ul) and create textnode for it's content.
@@ -198,7 +200,6 @@ class Navbar {
             
             window.addEventListener("scroll", ()=> {
 
-                //* Adding active class to kontakt menu item, when the footer is shown on the page (has a height of 200 and opacity of 1).
                 if(window.scrollY >= 2143){
 
                     navLinks.forEach((e) => {
@@ -210,6 +211,8 @@ class Navbar {
                 else{
                     navLinks[3].classList.remove("active");           
                 }
+
+                
 
 
                 //* Removing active class, when scrolling to the top og the page
