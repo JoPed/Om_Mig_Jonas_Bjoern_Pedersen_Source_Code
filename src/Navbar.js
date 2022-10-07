@@ -3,7 +3,6 @@ import content from "./ContentData.json";
 import { gsap } from "gsap";
 import ScrollToPlugin from "gsap/ScrollToPlugin";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import $ from 'jquery';
 
 class Navbar {
 
@@ -11,16 +10,11 @@ class Navbar {
 
         gsap.registerPlugin(ScrollToPlugin, ScrollTrigger);
 
+        //* Li elements get pushed in here on creation, array used in BurgerMenuToggle()
         this.listElements = [];
-
-        this.scrollPos = "";
-
-        this.getScroll;
 
         //* Reference the data in the json file.
         this.contentData = content;
-
-
 
         //* Create header
         this.header = new CreateHtmlElements({
@@ -109,14 +103,14 @@ class Navbar {
                 a = new CreateHtmlElements({
                     type: "a",
                     id: "",
-                    class: "navLinks.links"
+                    class: "navLinks.contentLinks"
                 });
             }
             else {
                 a = new CreateHtmlElements({
                     type: "a",
                     id: "",
-                    class: "navLinkFuture.links"
+                    class: "navLinkFuture.contentLinks"
                 });
             }
 
@@ -124,8 +118,6 @@ class Navbar {
             a.htmlElem.href = `#${this.contentData.liMenuPoints.href[i]}`;
             let node = document.createTextNode(this.contentData.liMenuPoints.title[i]);
             a.htmlElem.appendChild(node);
-
-            // this.arrayOfA.push(a.htmlElem);
         }
     }
 
@@ -154,32 +146,82 @@ class Navbar {
         });
     }
 
+    HighlighMenuPoints(){
+        const contentSections = gsap.utils.toArray(".content");
+        const navLinks = gsap.utils.toArray(".contentLinks");
 
-    //* Helper function from GSAP member on their forum.
-    // https://greensock.com/forums/topic/34010-scrollto-problems-while-using-scrolltrigger/
-    /*
-    Returns a FUNCTION that you can feed an element to get its scroll position.
-    - targets: selector text, element, or Array of elements 
-    - position: defaults to "top top" but can be anything like "center center", "100px 80%", etc. Same format as "start" and "end" ScrollTrigger values.
-    - containerAnimation: [optional] the horizontal scrolling tween/timeline. Must have an ease of "none"/"linear".
-    */
-    GetScrollLookup(targets, position, containerAnimation) {
-        let triggers = gsap.utils.toArray(targets).map((el, i) => ScrollTrigger.create({
-            trigger: el,
-            start: position || "top top",
-            refreshPriority: -10,
-            containerAnimation: containerAnimation
-        })),
-            st = containerAnimation && containerAnimation.scrollTrigger;
-        return target => {
-            let t = gsap.utils.toArray(target)[0],
-                i = triggers.length;
-            while (i-- && triggers[i].trigger !== t) { };
-            if (i < 0) {
-                return console.warn("target not found", target);
+        contentSections.forEach((sec, i) => {
+            let startPos;
+            let endPos;
+
+            //* First section should have a slightly different start position, so it highlights after the scrollTo has run.
+            if (sec.id === "topContainer") {
+                startPos = "-5px +=125px";
             }
-            return containerAnimation ? st.start + (triggers[i].start / containerAnimation.duration()) * (st.end - st.start) : triggers[i].start;
-        };
+            else {
+                startPos = "top +=125px";
+            }
+
+            //* The end position of the bottom container should be different, to make it highlight onenterback after highlighting the footer.
+            if(sec.id === "bottomContainer"){
+                endPos = "+=25% +=200px";
+            }
+            else{
+                endPos = "+=90% +=200px";
+            }
+
+            //* Create a scrolltrigger, foreach content container (topContainer, middleContainer, bottomContainer, mainFooter);
+           ScrollTrigger.create({
+                trigger: sec,
+                start: startPos,
+                end: endPos,
+
+                //* When a sections scrolltrigger enters the trigger. Remove active for all sections, then add for the right section
+                onEnter: () => {
+                    navLinks.forEach((e) => {
+                        e.classList.remove("active");
+                    });
+                    navLinks[i].classList.add("active");
+                },
+
+                //*Same happens here, but when a sections entersback, after it has left the trigger
+                onEnterBack: () => {
+                    navLinks.forEach((e) => {
+                        e.classList.remove("active");
+                    });
+                    navLinks[i].classList.add("active");
+
+                },
+            });
+
+
+            
+            window.addEventListener("scroll", ()=> {
+
+                //* Adding active class to kontakt menu item, when the footer is shown on the page (has a height of 200 and opacity of 1).
+                if(window.scrollY >= 2143){
+
+                    navLinks.forEach((e) => {
+                        e.classList.remove("active");
+                    });
+                    navLinks[3].classList.add("active");
+                }
+                //*Removing the active class for kontakt again, if the scrollbar has not reached near bottom.
+                else{
+                    navLinks[3].classList.remove("active");           
+                }
+
+
+                //* Removing active class, when scrolling to the top og the page
+                if(window.scrollY <= 25){
+                    navLinks.forEach((e) => {
+                        e.classList.remove("active");
+                    });
+                }
+            });
+
+            
+        })
     }
 
     BurgerMenuToggle() {
@@ -223,6 +265,33 @@ class Navbar {
             this.burgerIcon.htmlElem.classList.replace("fa-xmark", "fa-bars");
 
         }
+    }
+
+    //* Helper function from GSAP member on their forum.
+    // https://greensock.com/forums/topic/34010-scrollto-problems-while-using-scrolltrigger/
+    /*
+    Returns a FUNCTION that you can feed an element to get its scroll position.
+    - targets: selector text, element, or Array of elements 
+    - position: defaults to "top top" but can be anything like "center center", "100px 80%", etc. Same format as "start" and "end" ScrollTrigger values.
+    - containerAnimation: [optional] the horizontal scrolling tween/timeline. Must have an ease of "none"/"linear".
+    */
+    GetScrollLookup(targets, position, containerAnimation) {
+        let triggers = gsap.utils.toArray(targets).map((el, i) => ScrollTrigger.create({
+            trigger: el,
+            start: position || "top top",
+            refreshPriority: -10,
+            containerAnimation: containerAnimation
+        })),
+            st = containerAnimation && containerAnimation.scrollTrigger;
+        return target => {
+            let t = gsap.utils.toArray(target)[0],
+                i = triggers.length;
+            while (i-- && triggers[i].trigger !== t) { };
+            if (i < 0) {
+                return console.warn("target not found", target);
+            }
+            return containerAnimation ? st.start + (triggers[i].start / containerAnimation.duration()) * (st.end - st.start) : triggers[i].start;
+        };
     }
 
 

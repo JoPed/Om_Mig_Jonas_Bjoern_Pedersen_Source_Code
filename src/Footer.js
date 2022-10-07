@@ -9,7 +9,8 @@ class Footer{
 
         this.footer = new CreateHtmlElements({
             type: "footer",
-            id: "mainFooter"
+            id: "mainFooter",
+            class: "content"
         });
 
         this.infoText = new CreateHtmlElements({

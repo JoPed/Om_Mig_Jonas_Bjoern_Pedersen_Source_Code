@@ -1,0 +1,118 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@600&display=swap");
+@media only screen and (max-width: 1200px) {
+  #mainContent {
+    width: 100%;
+  }
+  #mainHeader {
+    width: 100%;
+  }
+  #mainFooter {
+    width: 100%;
+  }
+}
+@media only screen and (max-width: 768px) {
+  html {
+    font-size: 8px;
+  }
+  #mainContent {
+    grid-template-columns: repeat(6, 1fr);
+    width: 100%;
+  }
+  /* #region  Navigation */
+  #mainHeader {
+    width: 100%;
+  }
+  #mainHeader #navbar {
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  #navList {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  #navList.responsive {
+    position: absolute;
+    top: 125px;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(57, 62, 70);
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+  }
+  #navList a {
+    display: inline-block;
+  }
+  /* #endregion */
+  #topContainer {
+    grid-column: 1/7;
+  }
+  #topContainer #welcomeArticle {
+    grid-template-columns: repeat(6, 1fr);
+  }
+  #topContainer #welcomeArticle h1 {
+    grid-column: 1/7;
+  }
+  #topContainer #welcomeArticle p {
+    grid-column: 1/4;
+    grid-row: 2/5;
+  }
+  #topContainer #welcomeArticle #welcomeImgFigure {
+    grid-column: 4/7;
+  }
+  #middleContainer {
+    grid-column: 1/7;
+    grid-row: 2;
+    -webkit-column-gap: 50px;
+       -moz-column-gap: 50px;
+            column-gap: 50px;
+  }
+  #middleContainer #tigerImgFigure {
+    width: 50%;
+  }
+  #middleContainer #factsSection {
+    width: 50%;
+  }
+  #bottomContainer {
+    grid-column: 1/7;
+    grid-template-columns: repeat(6, 1fr);
+  }
+  #bottomContainer #btnPressMe {
+    grid-column: 3/5;
+    width: 200px;
+    left: 12%;
+  }
+  #bottomContainer #portugalImgFigure {
+    grid-column: 5/7;
+    padding-right: 10px;
+  }
+  #bottomContainer #portugalImgFigure figcaption {
+    bottom: 163px;
+  }
+  #bottomContainer #articleFuturePlans {
+    grid-column: 1/4;
+  }
+  #mainFooter {
+    width: 100%;
+  }
+  /* #region  Display none */
+  #navList li {
+    display: none;
+  }
+  /* #endregion */
+  /* #region  Display block */
+  #icon {
+    display: block;
+  }
+  /* #endregion */
+}/*# sourceMappingURL=tablet.css.map */

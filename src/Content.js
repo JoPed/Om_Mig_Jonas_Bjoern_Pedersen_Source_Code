@@ -34,7 +34,7 @@ class Content {
         this.topContainer = new CreateHtmlElements({
             type: "div",
             id: "topContainer",
-            class: "section"
+            class: "content"
         });
         //* Inputting content in the first container
         this.welcomeArticle = new CreateHtmlElements({
@@ -86,18 +86,13 @@ class Content {
         welcomeImgFigCaption.ApplyElementToParent(this.welcomeImgFigure.htmlElem);
         welcomeImgFigCaption.htmlElem.innerHTML = this.content.imageSources.altText[1];
 
-
-
-
-
-
         /* #endregion */
 
         /* #region  Container 2 */
         this.middleContainer = new CreateHtmlElements({
             type: "div",
             id: "middleContainer",
-            class: "section"
+            class: "content"
         });
 
         this.tigerImgFigure = new CreateHtmlElements({
@@ -161,7 +156,7 @@ class Content {
         this.bottomContainer = new CreateHtmlElements({
             type: "div",
             id: "bottomContainer",
-            class: "section"
+            class: "content"
         });
 
         this.articleFuturePlans = new CreateHtmlElements({
@@ -224,8 +219,6 @@ class Content {
         this.footer = new Footer(this.content, gsap);
 
         this.HandleWelcomeImgGsap();
-
-        //*Handle welcome article text
         this.HandleWelcomeArticleText();
 
         this.CreateListItemsFactsList();
@@ -237,48 +230,12 @@ class Content {
         this.SetImgSrcAndAltText();
 
         this.HandleLayeredScrollingTopMiddle();
-
         this.HandleLayeredScrollingMiddleBottom();
 
         navbar.HandleScrollingWithScrollTrigger("#navList .navLinks", "top 125px");
         navbar.HandleScrollingWithScrollTrigger("#navList .navLinkFuture", "-120px 125px");
+        navbar.HighlighMenuPoints();
 
-        const test = gsap.utils.toArray("#mainContent .section");
-        const links = gsap.utils.toArray(".links");
-
-        test.forEach((sec, i) => {
-            let startPos;
-            if (sec.id === "topContainer") {
-                startPos = "-5px +=125px";
-            }
-            else {
-                startPos = "top +=125px";
-            }
-
-            ScrollTrigger.create({
-                trigger: sec,
-                start: startPos,
-                end: "+=90% +=200px",
-                markers: true,
-
-                onEnter: () => {
-
-                    links.forEach((e) => {
-                        e.classList.remove("active");
-                    });
-                    links[i].classList.add("active");
-                },
-                onEnterBack: () => {
-
-                    console.log("enterback", sec);
-                    links.forEach((e) => {
-                        e.classList.remove("active");
-                    });
-                    links[i].classList.add("active");
-
-                }
-            });
-        })
         /* #endregion */
 
     }
@@ -416,7 +373,7 @@ class Content {
 
                         onComplete: () => {
                             gsap.to(this.portugalImgFigure.htmlElem, {
-                                x: -490,
+                                x: -570,
                                 duration: 2,
                                 opacity: 1,
                                 ease: "bounce",

@@ -9,6 +9,7 @@ import "../assets/fontawesome/css/all.min.css";
 
 
 import "../assets/css/main.min.css";
+import "../assets/css/tablet.min.css";
 
 
 
