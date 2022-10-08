@@ -19,19 +19,24 @@ html {
 /* #region  Text */
 p {
   color: rgb(255, 255, 255);
-  font-size: 2rem;
+  font-size: calc(1.2rem + 1vw);
+  font-size: clamp(15px, 1rem + 0.8vw, 2rem);
   line-height: 1.5;
+}
+
+li {
+  font-size: calc(1.2rem + 1vw);
 }
 
 h1 {
   color: rgba(214, 90, 49, 0.83);
-  font-size: 5rem;
+  font-size: calc(2.5rem + 2vw);
   font-family: "Source Code Pro", monospace;
 }
 
 h2 {
   color: rgba(214, 90, 49, 0.83);
-  font-size: 4.5rem;
+  font-size: calc(2rem + 2vw);
   font-family: "Source Code Pro", monospace;
 }
 
@@ -487,7 +492,6 @@ button {
 }
 #mainFooter h2 {
   text-transform: uppercase;
-  font-size: 3rem;
 }
 
 /* #endregion */

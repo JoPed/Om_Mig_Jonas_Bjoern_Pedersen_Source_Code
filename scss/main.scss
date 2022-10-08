@@ -19,19 +19,24 @@ html {
 /* #region  Text */
 p {
     color: $col-text;
-    font-size: 2rem;
+    font-size: calc(1.2rem + 1vw);
+    font-size: clamp(15px,calc(1rem + .8vw), 2rem);
     line-height: 1.5;
+}
+
+li{
+    font-size: calc(1.2rem + 1vw);
 }
 
 h1 {
     color: $col-headings;
-    font-size: 5rem;
+    font-size: calc(2.5rem + 2vw);
     font-family: $font-heading;
 }
 
 h2 {
     color: $col-headings;
-    font-size: 4.5rem;
+    font-size: calc(2rem + 2vw);
     font-family: $font-heading;
 }
 
@@ -498,7 +503,6 @@ button {
 
     h2 {
         text-transform: uppercase;
-        font-size: 3rem;
     }
 
 }

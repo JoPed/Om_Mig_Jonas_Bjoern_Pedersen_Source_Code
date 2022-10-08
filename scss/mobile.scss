@@ -1,0 +1,144 @@
+@import "variables";
+
+
+@media only screen and (max-width: 620px) {
+
+    html{
+        font-size: 8px;
+    }
+    #mainContent {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    /* #region  Top container */
+    #topContainer {
+        grid-column: 1/5;
+        height: fit-content;
+
+        #welcomeArticle {
+            grid-template-columns: repeat(4, 1fr);
+
+            h1 {
+                grid-column: 1/5;
+                grid-row: 1;
+            }
+
+            p {
+                grid-column: 1/5;
+                grid-row: 2;
+            }
+
+            #welcomeImgFigure {
+                grid-column: 1/5;
+                grid-row: 3;
+                margin-inline: 38px;
+                margin-bottom: 15px
+            }
+
+        }
+    }
+
+    /* #endregion */
+
+    /* #region  MiddleContainer */
+    #middleContainer {
+        grid-column: 1/5;
+        grid-row: 2;
+        column-gap: 0;
+        height: fit-content;
+        padding-bottom: 30px;
+
+        flex-direction: column;
+        align-items: center;
+
+        #tigerImgFigure {
+            width: 80%;
+            margin-left: 0;
+            margin-top: 25px;
+        }
+
+        #factsSection{
+            width: 100%;
+            padding-inline: 20px;
+        }
+    }
+
+    /* #endregion */
+
+    /* #region  Bottom container */
+    #bottomContainer {
+        grid-column: 1/5;
+        grid-row: 3;
+        height: fit-content;
+        padding-bottom: 30px;
+
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: auto;
+
+        //* This is also set in Content.js -> ShowFutureArticleAndImg. But just to be safe
+        #btnPressMe {
+            display: none;
+        }
+
+        #portugalImgFigure {
+            opacity: 1;
+            left: 0;
+            grid-row: 2;
+            grid-column: 2/4;
+
+            // margin-right:0;
+            margin-inline: -17px;
+        }
+
+        #articleFuturePlans {
+            opacity: 1;
+            left: 0;
+            grid-row: 1;
+            grid-column: 1/5;
+        }
+    }
+
+    /* #endregion */
+
+    /* #region  Footer */
+    #mainFooter{
+        height: 350px;
+
+        & > *{
+            opacity: 1;
+        }
+
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+
+        #infoText{
+            order:1;
+            margin-top:25px;
+            margin-left: 0;
+        }
+
+        #soMEIcons{
+            order: 2;
+            margin-top: 0;
+            margin-right: 0;
+        }
+
+        #crText{
+            order: 3;
+            margin-top: 0;
+        }
+    }
+
+
+
+
+
+    /* #endregion */
+
+
+
+
+
+
+}

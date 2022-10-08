@@ -11,6 +11,7 @@ import "@fortawesome/fontawesome-free/js/all.js"
 
 import "../assets/css/main.min.css";
 import "../assets/css/tablet.min.css";
+import "../assets/css/mobile.min.css";
 
 
 

@@ -10,10 +10,7 @@
     width: 100%;
   }
 }
-@media only screen and (max-width: 768px) {
-  html {
-    font-size: 8px;
-  }
+@media only screen and (max-width: 991.98px) {
   #mainContent {
     grid-template-columns: repeat(6, 1fr);
     width: 100%;
@@ -79,6 +76,7 @@
   }
   #middleContainer #tigerImgFigure {
     width: 50%;
+    margin-left: 10px;
   }
   #middleContainer #factsSection {
     width: 50%;

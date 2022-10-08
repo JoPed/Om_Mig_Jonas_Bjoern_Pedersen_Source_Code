@@ -286,16 +286,34 @@ class Content {
 
     HandleTigerImgGsap() {
         //* Gsap scrolltrigger on tigerImg
-        gsap.to(this.tigerImgFigure.htmlElem, {
-            scrollTrigger: {
-                trigger: this.tigerImgFigure.htmlElem,
-                //setting scrub to a number value, means it is going to take x amount of time to catch up with the scroll trigger. Setting scrub:true instead makes it follow the scrolltrigger
-                scrub: .3,
-                start: "top bottom",
-                end: "top 135px"
-            },
-            x: 590,
+
+        let matchMedia = gsap.matchMedia();
+
+        matchMedia.add({
+            isDesptop: "(min-width: 992px)",
+            isMobile: "(max-width: 991px)"
+        }, (context) => {
+
+            let { isDesptop, isMobile } = context.conditions;
+
+            if (isDesptop) {
+                gsap.to(this.tigerImgFigure.htmlElem, {
+                    scrollTrigger: {
+                        trigger: this.tigerImgFigure.htmlElem,
+                        //setting scrub to a number value, means it is going to take x amount of time to catch up with the scroll trigger. Setting scrub:true instead makes it follow the scrolltrigger
+                        scrub: .3,
+                        start: "top bottom",
+                        end: "top 135px"
+                    },
+                    x: 590,
+                });
+            }
+            else{
+                this.tigerImgFigure.htmlElem.style.left = "0";
+            }
         });
+
+
     }
 
     HandleFuturePlansArticleText() {
@@ -309,115 +327,201 @@ class Content {
     }
 
     ShowFutureArticleAndImg() {
-        this.btnPressMe.htmlElem.addEventListener("click", () => {
 
-            let btnPsydoSelector = CSSRulePlugin.getRule("#bottomContainer #btnPressMe::before")
-            let timeLine = gsap.timeline({ paused: false });
+        let matchMedia = gsap.matchMedia();
 
+        //*Only use gsap when screen size is minimum 992px
+        matchMedia.add({
+            isDesptop: "(min-width: 992px)",
+            isMobile: "(max-width: 991px)"
+        }, (context) => {
 
-            this.footer.ShowFooter();
+            let { isDesptop, isMobile } = context.conditions;
 
-            gsap.to(this.articleFuturePlans.htmlElem, {
-                duration: 5,
-                x: 570,
-                opacity: 1,
-                ease: "bounce",
+            if(isDesptop){
 
-                onComplete: () => {
-                    timeLine.to(this.btnPressMe.htmlElem, {
-                        duration: 2,
-                        ease: "slow",
-
+                //*First use context to add functionality onClick. Then add that, to an actual eventListener.
+                //*Then on return (clean up code) remove that eventlistener.
+                context.add("onClick", () => {
+    
+                    let btnPsydoSelector = CSSRulePlugin.getRule("#bottomContainer #btnPressMe::before")
+                    let timeLine = gsap.timeline({ paused: false });
+    
+    
+                    this.footer.ShowFooter();
+    
+                    gsap.to(this.articleFuturePlans.htmlElem, {
+                        duration: 5,
+                        x: 570,
+                        opacity: 1,
+                        ease: "bounce",
+    
                         onComplete: () => {
-                            this.btnPressMe.htmlElem.style.padding = 0;
-                            this.btnPressMe.htmlElem.innerHTML = "";
-
-                            gsap.to(btnPsydoSelector, {
-                                duration: 1,
-                                height: 0,
-                                opacity: 0,
-                                ease: "slow"
-                            })
-                        }
-                    })
-
-                    timeLine.to(this.btnPressMe.htmlElem, {
-                        duration: .8,
-                        height: .2,
-                        opacity: .5,
-                        boxShadow: "0px 0px 35px 7px rgb(240, 169, 37)",
-                        delay: .25
-                    })
-                    timeLine.to(this.btnPressMe.htmlElem, {
-                        duration: .1,
-                        opacity: .5,
-                        background: "#26ff92"
-                    })
-                    timeLine.to(this.btnPressMe.htmlElem, {
-                        duration: 0,
-                        width: 100,
-                        delay: .2
-                    })
-                    timeLine.to(this.btnPressMe.htmlElem, {
-                        duration: .1,
-                        boxShadow: "0px 0px 100px 55px rgb(255, 140, 0)",
-                        height: 0,
-                        delay: .23
-                    })
-                    timeLine.to(this.btnPressMe.htmlElem, {
-                        duration: .8,
-                        width: 500,
-                        x: 2000,
-                        boxShadow: "0px 0px 85px 17px rgb(255, 140, 0)",
-                        delay: .2,
-
-                        onComplete: () => {
-                            gsap.to(this.portugalImgFigure.htmlElem, {
-                                x: -570,
+                            timeLine.to(this.btnPressMe.htmlElem, {
                                 duration: 2,
-                                opacity: 1,
-                                ease: "bounce",
-
+                                ease: "slow",
+    
                                 onComplete: () => {
-                                    gsap.to(window, {
-                                        duration: 1.5,
-                                        scrollTo: "#mainFooter"
+                                    this.btnPressMe.htmlElem.style.padding = 0;
+                                    this.btnPressMe.htmlElem.innerHTML = "";
+    
+                                    gsap.to(btnPsydoSelector, {
+                                        duration: 1,
+                                        height: 0,
+                                        opacity: 0,
+                                        ease: "slow"
+                                    })
+                                }
+                            })
+    
+                            timeLine.to(this.btnPressMe.htmlElem, {
+                                duration: .8,
+                                height: .2,
+                                opacity: .5,
+                                boxShadow: "0px 0px 35px 7px rgb(240, 169, 37)",
+                                delay: .25
+                            })
+                            timeLine.to(this.btnPressMe.htmlElem, {
+                                duration: .1,
+                                opacity: .5,
+                                background: "#26ff92"
+                            })
+                            timeLine.to(this.btnPressMe.htmlElem, {
+                                duration: 0,
+                                width: 100,
+                                delay: .2
+                            })
+                            timeLine.to(this.btnPressMe.htmlElem, {
+                                duration: .1,
+                                boxShadow: "0px 0px 100px 55px rgb(255, 140, 0)",
+                                height: 0,
+                                delay: .23
+                            })
+                            timeLine.to(this.btnPressMe.htmlElem, {
+                                duration: .8,
+                                width: 500,
+                                x: 2000,
+                                boxShadow: "0px 0px 85px 17px rgb(255, 140, 0)",
+                                delay: .2,
+    
+                                onComplete: () => {
+                                    gsap.to(this.portugalImgFigure.htmlElem, {
+                                        x: -570,
+                                        duration: 2,
+                                        opacity: 1,
+                                        ease: "bounce",
+    
+                                        onComplete: () => {
+                                            gsap.to(window, {
+                                                duration: 1.5,
+                                                scrollTo: "#mainFooter"
+                                            });
+                                        }
                                     });
                                 }
                             });
+    
+    
                         }
                     });
+    
+                });
+
+                this.btnPressMe.htmlElem.addEventListener("click", context.onClick);
+
+            }
+            else{
+                this.btnPressMe.htmlElem.style.display = "none";
+                this.portugalImgFigure.htmlElem.style.opacity = "1";
+                this.portugalImgFigure.htmlElem.style.left = "0";
+                this.articleFuturePlans.htmlElem.style.opacity = "1";
+                this.articleFuturePlans.htmlElem.style.left = "0";
+                $("#mainFooter").css("height", "350px");
+                $("#mainFooter > *").css("opacity", "1");
+            }
+
+            return ()=> {
+                this.btnPressMe.htmlElem.removeEventListener("click", context.onClick);
+                
+            }
 
 
-                }
-            });
+        })
 
-        });
+
     }
 
     HandleLayeredScrollingTopMiddle() {
-        ScrollTrigger.create({
-            trigger: this.topContainer.htmlElem,
-            start: "top 125px",
-            end: "bottom 200px",
-            pin: "#topContainer",
-            pinSpacing: false
 
+        let matchMedia = gsap.matchMedia();
+
+        matchMedia.add({
+            isDesptop: "(min-width: 576px)",
+            isMobile: "(max-width: 575px)"
+        }, (context) => {
+
+            let {isDesptop, isMobile} = context.conditions;
+
+            if(isDesptop){
+                ScrollTrigger.create({
+                    trigger: this.topContainer.htmlElem,
+                    start: "top 125px",
+                    end: "bottom 200px",
+                    pin: "#topContainer",
+                    pinSpacing: false
+    
+                });
+            }
+            else{
+                ScrollTrigger.create({
+                    trigger: this.topContainer.htmlElem,
+                    start: "top -50%",
+                    end: "bottom 200px",
+                    pin: "#topContainer",
+                    pinSpacing: false
+    
+                });
+            }
+            
         });
 
     }
 
     HandleLayeredScrollingMiddleBottom() {
-        ScrollTrigger.create({
-            trigger: this.middleContainer.htmlElem,
-            start: "top 125px",
-            end: "bottom 125px",
-            pin: "#middleContainer",
-            pinSpacing: false
 
+        let matchMedia = gsap.matchMedia();
+
+        matchMedia.add({
+            isDesptop: "(min-width: 576px)",
+            isMobile: "(max-width: 575px)"
+        }, (context) => {
+
+            let {isDesptop, isMobile} = context.conditions;
+
+            if(isDesptop){
+                ScrollTrigger.create({
+                    trigger: this.middleContainer.htmlElem,
+                    start: "top 125px",
+                    end: "bottom 200px",
+                    pin: "#middleContainer",
+                    pinSpacing: false
+    
+                });
+            }
+            else{
+                ScrollTrigger.create({
+                    trigger: this.middleContainer.htmlElem,
+                    start: "top 75px",
+                    end: "bottom 200px",
+                    pin: "#middleContainer",
+                    pinSpacing: false
+    
+                });
+            }
+            
         });
+        
     }
-
 
 }
 export default Content;
