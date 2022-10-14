@@ -233,7 +233,7 @@ class Content {
         this.HandleLayeredScrollingMiddleBottom();
 
         navbar.HandleScrollingWithScrollTrigger("#navList .navLinks", "top 125px");
-        navbar.HandleScrollingWithScrollTrigger("#navList .navLinkFuture", "-120px 125px");
+        navbar.HandleScrollingWithScrollTrigger("#navList .navLinkFuture", "-5px 125px");
         navbar.HighlighMenuPoints();
 
         /* #endregion */
@@ -301,9 +301,9 @@ class Content {
                     scrollTrigger: {
                         trigger: this.tigerImgFigure.htmlElem,
                         //setting scrub to a number value, means it is going to take x amount of time to catch up with the scroll trigger. Setting scrub:true instead makes it follow the scrolltrigger
-                        scrub: .3,
+                        scrub: true,
                         start: "top bottom",
-                        end: "top 135px"
+                        end: "top 225px"
                     },
                     x: 590,
                 });

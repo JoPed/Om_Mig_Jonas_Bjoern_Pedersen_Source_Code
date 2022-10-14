@@ -182,7 +182,7 @@ class Navbar {
         const navLinks = gsap.utils.toArray(".contentLinks");
 
         contentSections.forEach((sec, i) => {
-            let startPos;
+            let startPos = "-5px +=125px";
             let endPos;
 
             //* First section should have a slightly different start position, so it highlights after the scrollTo has run.
@@ -192,6 +192,7 @@ class Navbar {
             else {
                 startPos = "top +=125px";
             }
+
 
             //* The end position of the bottom container should be different, to make it highlight onenterback after highlighting the footer.
             if (sec.id === "bottomContainer") {
@@ -223,29 +224,28 @@ class Navbar {
                     navLinks[i].classList.add("active");
 
                 },
+                //* If the current section is the bottomContainer, and it leaves the scrolltrigger, then highlight the footer menupoint
+                onLeave: () => {
+                    if (sec.id === "bottomContainer") {
+
+                        navLinks.forEach((e) => {
+                            e.classList.remove("active");
+                        });
+                        navLinks[3].classList.add("active");
+                    }
+                    else {
+                        navLinks[3].classList.remove("active");
+
+                    }
+                }
             });
 
 
 
             window.addEventListener("scroll", () => {
 
-                if (window.scrollY >= 2143) {
-
-                    navLinks.forEach((e) => {
-                        e.classList.remove("active");
-                    });
-                    navLinks[3].classList.add("active");
-                }
-                //*Removing the active class for kontakt again, if the scrollbar has not reached near bottom.
-                else {
-                    navLinks[3].classList.remove("active");
-                }
-
-
-
-
                 //* Removing active class, when scrolling to the top og the page
-                if (window.scrollY <= 25) {
+                if (window.scrollY <= 20) {
                     navLinks.forEach((e) => {
                         e.classList.remove("active");
                     });

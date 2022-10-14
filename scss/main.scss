@@ -19,13 +19,13 @@ html {
 /* #region  Text */
 p {
     color: $col-text;
-    font-size: calc(1.2rem + 1vw);
     font-size: clamp(15px,calc(1rem + .8vw), 2rem);
     line-height: 1.5;
 }
 
 li{
-    font-size: calc(1.2rem + 1vw);
+    font-size: clamp(15px,calc(1rem + .8vw), 2rem);
+
 }
 
 h1 {
